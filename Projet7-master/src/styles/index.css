@@ -1,0 +1,6 @@
+@import './general.css';
+@import './components/Navigation.css';
+@import './components/Blockpost.css';
+@import './components/LoginAndSignup.css';
+@import './components/Avatar.css';
+@import './components/Disconnect.css';

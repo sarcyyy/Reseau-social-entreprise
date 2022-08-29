@@ -1,0 +1,14 @@
+.avatar{
+ display: flex;
+ margin-top: 2%;
+ margin-left: 2%;
+ gap:10px;
+}
+.picsize{
+    border: 2px solid grey;
+    border-radius: 50%;  
+    height:50px;
+    width:50px;
+    object-fit: cover;
+
+}

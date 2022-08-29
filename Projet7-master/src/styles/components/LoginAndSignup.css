@@ -1,0 +1,9 @@
+.LoginAndsignup{
+    display: flex;
+    flex-wrap: nowrap;
+  flex-direction: column;
+align-items: center;
+
+}
+
+

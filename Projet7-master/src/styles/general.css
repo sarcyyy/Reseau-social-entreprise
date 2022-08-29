@@ -1,0 +1,19 @@
+.paddingT10{
+    padding-top: 10%;
+}
+.width100{
+    width:100%;
+}
+.textcenter{
+    text-align: center;
+}
+.padding20T{
+    padding-top: 20%;
+}
+.centered{
+    display:flex;
+    justify-content: center;
+}
+.wrap{
+    flex-wrap:wrap;
+}
