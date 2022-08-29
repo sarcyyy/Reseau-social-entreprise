@@ -10,7 +10,7 @@ const Loginoption = () => {
         <input type="text" />
       </div>
       <div className="textcenter">
-        <p>Mot de passe</p>
+        <p>Mot de passse</p>
         <label htmlFor="Password"></label>
         <input type="Password" />
       </div>
