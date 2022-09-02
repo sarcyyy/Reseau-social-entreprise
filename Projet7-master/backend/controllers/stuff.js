@@ -1,4 +1,4 @@
-const Sauces = require('../models/thing');
+const Sauces = require('../models/Tweet');
 const fs = require('fs');
 
 exports.createThing = (req, res, next) => {
@@ -27,7 +27,7 @@ exports.modifyThing = (req, res, next) => {
     delete sauceModifie._userId;
     Sauces.findOne({_id: req.params.id})
         .then((sauce) => {
-            if (sauce.userId != req.auth.userId) {
+            if (sauce.userId !== req.auth.userId) {
                 res.status(401).json({ message : 'Not authorized'});
             } 
             else {
@@ -69,58 +69,58 @@ exports.getAllStuff = (req, res, next) => {
         .catch(error => res.status(500).json({ error }));
 };
 
-// exports.like = (req, res , next) => {
-//     const sauceLike = req.body.like;
-//     const userIdupdate = req.body.userId;
+exports.like = (req, res , next) => {
+    const sauceLike = req.body.like;
+    const userIdupdate = req.body.userId;
 
-//     Sauces.findOne ({ _id: req.params.id })
-//     .then(sauce => {
-//         nombreLike = sauce.likes;
-//         nombreDislike = sauce.dislikes;
-//         tableLike = sauce.usersLiked;
-//         tableDislike = sauce.usersDisliked;
+    Sauces.findOne ({ _id: req.params.id })
+    .then(sauce => {
+        let nombreLike = sauce.likes;
+        let nombreDislike = sauce.dislikes;
+        let tableLike = sauce.usersLiked;
+        let tableDislike = sauce.usersDisliked;
  
-//         if (sauceLike === 0) {
-//               if ( tableLike.includes(userIdupdate))// Verifier si user avait like ou dislike
-//                 {          
+        if (sauceLike === 0) {
+              if ( tableLike.includes(userIdupdate))// Verifier si user avait like ou dislike
+                {          
               
-//                     nombreLike = parseFloat(nombreLike)-1;
-//                     tableLike = tableLike.filter(alluserId => alluserId != userIdupdate);
-//                     console.log('tableLike');
-//                     console.log(tableLike);
-//                 // Si il avait like on retire un like et on l'enleve du tableau usersLiked
-//                }
-//                else if (tableDislike.includes(userIdupdate)){
-//                 nombreDislike = parseFloat(nombreDislike)-1;
-//                 tableDislike = tableDislike.filter(alluserId => alluserId != userIdupdate);
-//                 console.log('tabledislikeLike');
-//                 console.log(tableDislike);
+                    nombreLike = parseFloat(nombreLike)-1;
+                    tableLike = tableLike.filter(alluserId => alluserId !== userIdupdate);
+                    console.log('tableLike');
+                    console.log(tableLike);
+                // Si il avait like on retire un like et on l'enleve du tableau usersLiked
+               }
+               else if (tableDislike.includes(userIdupdate)){
+                nombreDislike = parseFloat(nombreDislike)-1;
+                tableDislike = tableDislike.filter(alluserId => alluserId !== userIdupdate);
+                console.log('tabledislikeLike');
+                console.log(tableDislike);
       
-// // Si il avait dislike on rajoute un like et on l'enleve du tableau usersDisliked
-//                }
-//         } else if (sauceLike === 1) {
-//             if ( tableLike.includes(userIdupdate)){
-//                 alert('error');
-//             }
-//             else{
-//             // verifier si il a pas deja like
-//             nombreLike += 1;
-//             tableLike.push(userIdupdate);
-//             }
+// Si il avait dislike on rajoute un like et on l'enleve du tableau usersDisliked
+               }
+        } else if (sauceLike === 1) {
+            if ( tableLike.includes(userIdupdate)){
+                alert('error');
+            }
+            else{
+            // verifier si il a pas deja like
+            nombreLike += 1;
+            tableLike.push(userIdupdate);
+            }
 
-//         } else if (sauceLike === -1) {
-//             if ( tableDislike.includes(userIdupdate)){
-//                 alert('error');
-//             }
-//             else{
-//             // verifier si il a pas deja dislike
-//             nombreDislike += 1;
-//             tableDislike.push(userIdupdate);
-//             }
-//         }
-//     Sauces.updateOne ({ _id: req.params.id}, {likes: nombreLike, usersLiked: tableLike, dislikes: nombreDislike, usersDisliked: tableDislike})
-//         .then(() =>res.status(200).json({ message: 'Votre avis à été pris en compte!'}))
-//         .catch(error => res.status(400).json({ error }))
-//     })
-//     .catch(error => res.status(400).json({ error }));
-// };
+        } else if (sauceLike === -1) {
+            if ( tableDislike.includes(userIdupdate)){
+                alert('error');
+            }
+            else{
+            // verifier si il a pas deja dislike
+            nombreDislike += 1;
+            tableDislike.push(userIdupdate);
+            }
+        }
+    Sauces.updateOne ({ _id: req.params.id}, {likes: nombreLike, usersLiked: tableLike, dislikes: nombreDislike, usersDisliked: tableDislike})
+        .then(() =>res.status(200).json({ message: 'Votre avis à été pris en compte!'}))
+        .catch(error => res.status(400).json({ error }))
+    })
+    .catch(error => res.status(400).json({ error }));
+};
