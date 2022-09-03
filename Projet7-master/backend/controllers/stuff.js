@@ -1,4 +1,4 @@
-const Sauces = require('../models/Tweet');
+const Tweet = require('../models/Tweet');
 const fs = require('fs');
 
 exports.createThing = (req, res, next) => {
@@ -8,7 +8,7 @@ exports.createThing = (req, res, next) => {
     sauceObjet.dislikes = 0;
     sauceObjet.usersLiked = [];
     sauceObjet.usersDisliked =[];
-    const sauce = new Sauces ({
+    const sauce = new Tweet ({
         ...sauceObjet,
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     });
@@ -25,7 +25,7 @@ exports.modifyThing = (req, res, next) => {
     } : { ...req.body };
   
     delete sauceModifie._userId;
-    Sauces.findOne({_id: req.params.id})
+    Tweet.findOne({_id: req.params.id})
         .then((sauce) => {
             if (sauce.userId !== req.auth.userId) {
                 res.status(401).json({ message : 'Not authorized'});
@@ -35,7 +35,7 @@ exports.modifyThing = (req, res, next) => {
                  fs.unlink(`images/${filename}`, () => {
                 });
                  
-                Sauces.updateOne({ _id: req.params.id}, { ...sauceModifie, _id: req.params.id})
+                Tweet.updateOne({ _id: req.params.id}, { ...sauceModifie, _id: req.params.id})
                 .then(() => res.status(200).json({message : 'Objet modifié!'}))
                 .catch(error => res.status(401).json({ error }));
             }
@@ -45,11 +45,11 @@ exports.modifyThing = (req, res, next) => {
         });
  };
 exports.deleteThing = (req, res, next) => {
-    Sauces.findOne({ _id: req.params.id })
+    Tweet.findOne({ _id: req.params.id })
         .then(sauce => {
             const filename = sauce.imageUrl.split('/images/')[1];
             fs.unlink(`images/${filename}`, () => {
-                Sauces.deleteOne ({ _id: req.params.id })
+                Tweet.deleteOne ({ _id: req.params.id })
                     .then(() => res.status(200).json({ message: 'Sauce supprimé !'}))
                     .catch(error => res.status(400).json({ error }));
             });
@@ -58,14 +58,14 @@ exports.deleteThing = (req, res, next) => {
 };
 
 exports.getOneThing = (req, res, next) => {
-    Sauces.findOne ({ _id: req.params.id })
+    Tweet.findOne ({ _id: req.params.id })
         .then((sauce) => res.status(200).json(sauce))
         .catch(error => res.status(400).json({ error }));
 };
 
 exports.getAllStuff = (req, res, next) => {
-    Sauces.find()
-        .then((sauces) => res.status(200).json(sauces))
+    Tweet.find()
+        .then((tweet) => res.status(200).json(tweet))
         .catch(error => res.status(500).json({ error }));
 };
 
@@ -73,7 +73,7 @@ exports.like = (req, res , next) => {
     const sauceLike = req.body.like;
     const userIdupdate = req.body.userId;
 
-    Sauces.findOne ({ _id: req.params.id })
+    Tweet.findOne ({ _id: req.params.id })
     .then(sauce => {
         let nombreLike = sauce.likes;
         let nombreDislike = sauce.dislikes;
@@ -118,7 +118,7 @@ exports.like = (req, res , next) => {
             tableDislike.push(userIdupdate);
             }
         }
-    Sauces.updateOne ({ _id: req.params.id}, {likes: nombreLike, usersLiked: tableLike, dislikes: nombreDislike, usersDisliked: tableDislike})
+    Tweet.updateOne ({ _id: req.params.id}, {likes: nombreLike, usersLiked: tableLike, dislikes: nombreDislike, usersDisliked: tableDislike})
         .then(() =>res.status(200).json({ message: 'Votre avis à été pris en compte!'}))
         .catch(error => res.status(400).json({ error }))
     })

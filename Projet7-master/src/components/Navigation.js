@@ -2,12 +2,12 @@ import { NavLink } from "react-router-dom";
 const Navigation = () => {
   return (
     <div className="navigation">
-      <NavLink to="/signup">
+      <NavLink to="/auth/signup">
         {/* <ul> */}
         <li>Créer un compte</li>
         {/* </ul> */}
       </NavLink>
-      <NavLink to="/login">
+      <NavLink to="/auth/login">
         {/* <ul> */}
         <li>Se connecter</li>
         {/* </ul> */}
