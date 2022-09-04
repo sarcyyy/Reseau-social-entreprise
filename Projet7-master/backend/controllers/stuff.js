@@ -2,7 +2,7 @@ const Tweet = require("../models/Tweet");
 const fs = require("fs");
 
 exports.createThing = (req, res, next) => {
-  const tweetObjet = JSON.stringify(req.body);
+  const tweetObjet = req.body;
   console.log(tweetObjet);
   delete req.body._id;
   tweetObjet.likes = 0;
