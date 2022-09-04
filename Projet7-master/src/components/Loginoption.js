@@ -7,12 +7,12 @@ const Loginoption = () => {
       <div className="textcenter">
         <p>Email</p>
         <label htmlFor="Email"></label>
-        <input type="text" />
+        <input type="text" id="verifyemail"/>
       </div>
       <div className="textcenter">
         <p>Mot de passse</p>
         <label htmlFor="Password"></label>
-        <input type="Password" />
+        <input type="Password" id ="verifypassword"/>
       </div>
       <Buttonconnect />
     </div>

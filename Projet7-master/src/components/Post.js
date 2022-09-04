@@ -17,27 +17,6 @@ const Post = () => {
         <button>dislike</button>
         <button>favoris</button>
       </div>
-      <div className="bordertop">
-        <p>Nom</p>
-        <p>texte</p>
-        <button>like</button>
-        <button>dislike</button>
-        <button>favoris</button>
-      </div>
-      <div className="bordertop">
-        <p>Nom</p>
-        <p>texte</p>
-        <button>like</button>
-        <button>dislike</button>
-        <button>favoris</button>
-      </div>
-      <div className="bordertop">
-        <p>Nom</p>
-        <p>texte</p>
-        <button>like</button>
-        <button>dislike</button>
-        <button>favoris</button>
-      </div>
     </div>
   );
 };
