@@ -1,27 +1,13 @@
 import React from "react";
 
-const Post = () => {
+const Post = ({ tweet }) => {
   return (
     <div className="poststyle">
       <div className="bordertop">
-        <p>Nom personne</p>
-        <p>texte</p>
+        <p>{tweet.name}</p>
+        <p>{tweet.description}</p>
         <img src="/img/logo192.png" alt="" className="tweetpicsize" />
-        <button>like</button>
-        <button>dislike</button>
-        <button>favoris</button>
-      </div>
-      <div className="bordertop">
-        <p>Nom personne</p>
-        <p>texte</p>
-        <img src="/img/logo192.png" alt="" className="tweetpicsize" />
-        <button>like</button>
-        <button>dislike</button>
-        <button>favoris</button>
-      </div>
-      <div className="bordertop">
-        <p>Nom personne</p>
-        <p>texte</p>
+        {/* dans le futur : {tweet.imageUrl} */}
         <button>like</button>
         <button>dislike</button>
         <button>favoris</button>

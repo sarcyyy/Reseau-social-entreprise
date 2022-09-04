@@ -1,49 +1,47 @@
-
-.blockpost{
-    display:flex;
-    width: 100%;
-    flex-wrap:nowrap;
-    margin-top:10%;
-   justify-content: center;
-     gap:15%;
+.blockpost {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-top: 10%;
+  justify-content: center;
+  gap: 15%;
 }
-.poststyle{
-    margin-left:20%;
-      text-align: center;
-    width:40%;
-    height: 1%;
-    border: 2px solid grey;
-   
+.poststyle {
+  margin-left: 10%;
+  margin-top: 50px;
+  text-align: center;
+  width: 40%;
+  height: 1%;
+  border: 2px solid grey;
 }
 
 .filterstyle {
-    height: 1%;
-    width: 15%;
-    border: 2px solid grey;
-    display: flex;
-    justify-content: center;
+  height: 1%;
+  width: 15%;
+  border: 2px solid grey;
+  display: flex;
+  justify-content: center;
 }
-.gap{
-    margin-bottom:15px;
-    margin-top:10px;
+.gap {
+  margin-bottom: 15px;
+  margin-top: 10px;
 }
-.bordertop{
-    border-top:2px solid grey;
-    padding-bottom:10px;
+.bordertop {
+  border-top: 2px solid grey;
+  padding-bottom: 10px;
 }
-.bordertop:first-child{
-    border-top:none;
-    
+.bordertop:first-child {
+  border-top: none;
 }
 
-.tweetblock{
-    display:flex;
-    justify-content: center;
-    margin-top:5%;
-    border: 2px solid grey;
-    border-radius: 15px 15px 15px 15px;
-    margin-left:25%;
-    margin-right:25%;
-    padding: 30px;
-    text-align: center;
+.tweetblock {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+  border: 2px solid grey;
+  border-radius: 15px 15px 15px 15px;
+  margin-left: 25%;
+  margin-right: 25%;
+  padding: 30px;
+  text-align: center;
 }
