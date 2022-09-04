@@ -1,5 +1,4 @@
 import React from "react";
-import CreateTweet from "../script/Createtweet";
 const Tweet = () => {
   return (
     <div className="tweetblock">
@@ -14,12 +13,23 @@ const Tweet = () => {
         id="creertweet"
         onClick={() => {
           let textcontent = document.getElementById("textcontent");
-          let filecontent = document.getElementById("filecontent");
-          let tweetcontent = {
-            texte: textcontent.value,
-            file: filecontent.value,
+
+          let tweet = {
+            name: "nom personne",
+            description: textcontent.value,
+            userId: "alkreo34yd",
           };
-          console.log(CreateTweet(tweetcontent));
+          console.log(tweet);
+          fetch("http://localhost:3000/api/accueil", {
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify(tweet),
+          }).then((rep) => {
+            console.log(rep);
+          });
         }}
       />
     </div>

@@ -1,10 +1,11 @@
 import React from "react";
-import Verifyformulaire from "../script/Verifyaccount";
-// import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import { Navigate } from "react-router-dom";
+
 const Buttonconnect = () => {
+  const [Islogtrue, setIslogtrue] = useState(false);
   return (
     <div className="LoginAndsignup paddingT10">
-      {/* <NavLink to="/accueil"> */}
       <button
         onClick={() => {
           let verifieremail = document.getElementById("verifyemail");
@@ -13,12 +14,28 @@ const Buttonconnect = () => {
             email: verifieremail.value,
             password: verifierpassword.value,
           };
-          console.log(Verifyformulaire(login));
+          fetch("http://localhost:3000/api/auth/login", {
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify(login),
+          }).then((rep) => {
+            if (rep.ok === true) {
+              console.log("Utilisateur vérifié");
+              setIslogtrue(true);
+            } else {
+              if (rep.ok === false) {
+                alert("mauvaise combinaison");
+              }
+            }
+          });
         }}
       >
+        {Islogtrue ? <Navigate to="/accueil" /> : ""}
         Connection
       </button>
-      {/* </NavLink> */}
     </div>
   );
 };

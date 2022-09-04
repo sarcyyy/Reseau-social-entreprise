@@ -1,5 +1,4 @@
-function Verifyformulaire(formulaire) {
-  let b = "fassslse";
+export default async function Verifyformulaire(formulaire) {
   fetch("http://localhost:3000/api/auth/login", {
     headers: {
       Accept: "application/json",
@@ -8,14 +7,14 @@ function Verifyformulaire(formulaire) {
     method: "POST",
     body: JSON.stringify(formulaire),
   })
-    .then((reponse) => reponse.json())
+    // .then((reponse) => reponse.json())
     .then((tweet) => {
+      console.log(tweet.ok);
       if (tweet.ok === true) {
-        return (b = true);
+        return true;
       } else {
-        return (b = false);
+        return false;
       }
     });
-  return b;
+  // return tweet.ok;
 }
-export default Verifyformulaire;

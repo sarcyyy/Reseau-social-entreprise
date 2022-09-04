@@ -1,25 +1,40 @@
 import React from "react";
-import envoiformulaire from "../script/Createaccount";
-// import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import { Navigate } from "react-router-dom";
 const Buttoncreate = () => {
+  const [Islogtrue, setIslogtrue] = useState(false);
   return (
     <div>
       <div className="LoginAndsignup paddingT10">
-        {/* <NavLink to="/accueil"> */}
         <button
           onClick={() => {
             let emailcreer = document.getElementById("createemail");
             let passworldcreer = document.getElementById("createpassword");
-            console.log(emailcreer.value);
-            console.log(passworldcreer.value);
+
             var login = {
               email: emailcreer.value,
               password: passworldcreer.value,
             };
-            console.log(login);
-            console.log(envoiformulaire(login));
+            fetch("http://localhost:3000/api/auth/signup", {
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              method: "POST",
+              body: JSON.stringify(login),
+            }).then((rep) => {
+              if (rep.ok === true) {
+                console.log("Utilisateur créer");
+                setIslogtrue(true);
+              } else {
+                if (rep.ok === false) {
+                  alert("mauvaise combinaison");
+                }
+              }
+            });
           }}
         >
+          {Islogtrue ? <Navigate to="/accueil" /> : ""}
           Créer un compte
         </button>
         {/* </NavLink> */}
