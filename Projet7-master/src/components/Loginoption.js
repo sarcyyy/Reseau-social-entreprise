@@ -7,12 +7,12 @@ const Loginoption = () => {
       <div className="textcenter">
         <p>Email</p>
         <label htmlFor="Email"></label>
-        <input type="text" id="verifyemail"/>
+        <input type="text" id="verifyemail" />
       </div>
       <div className="textcenter">
         <p>Mot de passse</p>
         <label htmlFor="Password"></label>
-        <input type="Password" id ="verifypassword"/>
+        <input type="Password" id="verifypassword" />
       </div>
       <Buttonconnect />
     </div>
@@ -20,4 +20,3 @@ const Loginoption = () => {
 };
 
 export default Loginoption;
-

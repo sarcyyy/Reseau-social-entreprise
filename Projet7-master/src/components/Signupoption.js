@@ -1,14 +1,13 @@
 import React from "react";
 import Buttoncreate from "./Buttoncreate";
 
-
 const Signupoption = () => {
   return (
     <div>
       <div className="LoginAndsignup paddingT10">
         <div className="textcenter">
           <p className="">Email d'entreprise</p>
-          <label htmlFor="Email" ></label>
+          <label htmlFor="Email"></label>
           <input type="text" id="createemail" />
         </div>
         <div className="textcenter">

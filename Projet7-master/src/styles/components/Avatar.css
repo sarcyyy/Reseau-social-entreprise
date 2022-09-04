@@ -13,6 +13,11 @@
 
 }
 
+.tweetpicsize{
+  height:75px;
+    width:75px;
+    object-fit: cover;
+}
 .hidden{
     display:none;
     margin-left:2%;

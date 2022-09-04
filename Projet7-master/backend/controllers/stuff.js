@@ -2,41 +2,41 @@ const Tweet = require('../models/Tweet');
 const fs = require('fs');
 
 exports.createThing = (req, res, next) => {
-    const sauceObjet = JSON.parse(req.body.sauce);
+    const tweetObjet = JSON.parse(req.body.tweet);
     delete req.body._id;
-    sauceObjet.likes = 0;
-    sauceObjet.dislikes = 0;
-    sauceObjet.usersLiked = [];
-    sauceObjet.usersDisliked =[];
-    const sauce = new Tweet ({
-        ...sauceObjet,
+    tweetObjet.likes = 0;
+    tweetObjet.dislikes = 0;
+    tweetObjet.usersLiked = [];
+    tweetObjet.usersDisliked =[];
+    const tweet = new Tweet ({
+        ...tweetObjet,
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     });
-    sauce.save()
-        .then(() => res.status(201).json({ message: 'Sauce enregistré !'}))
+    tweet.save()
+        .then(() => res.status(201).json({ message: 'tweet enregistré !'}))
         .catch(error => res.status(400).json({ error }));
 };
 
 
 exports.modifyThing = (req, res, next) => {
-    const sauceModifie = req.file ? {
-        ...JSON.parse(req.body.sauce),
+    const tweetModifie = req.file ? {
+        ...JSON.parse(req.body.tweet),
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     } : { ...req.body };
   
-    delete sauceModifie._userId;
+    delete tweetModifie._userId;
     Tweet.findOne({_id: req.params.id})
-        .then((sauce) => {
-            if (sauce.userId !== req.auth.userId) {
+        .then((tweet) => {
+            if (tweet.userId !== req.auth.userId) {
                 res.status(401).json({ message : 'Not authorized'});
             } 
             else {
-                 const filename = sauce.imageUrl.split('/images/')[1];
+                 const filename = tweet.imageUrl.split('/images/')[1];
                  fs.unlink(`images/${filename}`, () => {
                 });
                  
-                Tweet.updateOne({ _id: req.params.id}, { ...sauceModifie, _id: req.params.id})
-                .then(() => res.status(200).json({message : 'Objet modifié!'}))
+                Tweet.updateOne({ _id: req.params.id}, { ...tweetModifie, _id: req.params.id})
+                .then(() => res.status(200).json({message : 'tweet modifié!'}))
                 .catch(error => res.status(401).json({ error }));
             }
         })
@@ -46,11 +46,11 @@ exports.modifyThing = (req, res, next) => {
  };
 exports.deleteThing = (req, res, next) => {
     Tweet.findOne({ _id: req.params.id })
-        .then(sauce => {
-            const filename = sauce.imageUrl.split('/images/')[1];
+        .then(tweet => {
+            const filename = tweet.imageUrl.split('/images/')[1];
             fs.unlink(`images/${filename}`, () => {
                 Tweet.deleteOne ({ _id: req.params.id })
-                    .then(() => res.status(200).json({ message: 'Sauce supprimé !'}))
+                    .then(() => res.status(200).json({ message: 'tweet supprimé !'}))
                     .catch(error => res.status(400).json({ error }));
             });
         })
@@ -70,17 +70,17 @@ exports.getAllStuff = (req, res, next) => {
 };
 
 exports.like = (req, res , next) => {
-    const sauceLike = req.body.like;
+    const tweetLike = req.body.like;
     const userIdupdate = req.body.userId;
 
     Tweet.findOne ({ _id: req.params.id })
-    .then(sauce => {
-        let nombreLike = sauce.likes;
-        let nombreDislike = sauce.dislikes;
-        let tableLike = sauce.usersLiked;
-        let tableDislike = sauce.usersDisliked;
+    .then(tweet => {
+        let nombreLike = tweet.likes;
+        let nombreDislike = tweet.dislikes;
+        let tableLike = tweet.usersLiked;
+        let tableDislike = tweet.usersDisliked;
  
-        if (sauceLike === 0) {
+        if (tweetLike === 0) {
               if ( tableLike.includes(userIdupdate))// Verifier si user avait like ou dislike
                 {          
               
@@ -98,7 +98,7 @@ exports.like = (req, res , next) => {
       
 // Si il avait dislike on rajoute un like et on l'enleve du tableau usersDisliked
                }
-        } else if (sauceLike === 1) {
+        } else if (tweetLike === 1) {
             if ( tableLike.includes(userIdupdate)){
                 alert('error');
             }
@@ -108,7 +108,7 @@ exports.like = (req, res , next) => {
             tableLike.push(userIdupdate);
             }
 
-        } else if (sauceLike === -1) {
+        } else if (tweetLike === -1) {
             if ( tableDislike.includes(userIdupdate)){
                 alert('error');
             }
