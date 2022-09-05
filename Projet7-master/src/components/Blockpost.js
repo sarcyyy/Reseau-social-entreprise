@@ -5,12 +5,13 @@ import { useEffect, useState } from "react";
 import islogged from "../script/Islogged";
 const Blockpost = () => {
   const [data, setData] = useState([]);
-  const token = localStorage.getItem("token").slice(1, -1);
 
-  if (islogged(token) === false) {
-    window.location = "http://localhost:7200/auth/login";
-  }
   useEffect(() => {
+    const verifytoken = localStorage.getItem("token");
+    if (islogged(verifytoken) === false) {
+      window.location = "http://localhost:7200/auth/login";
+    }
+    const token = localStorage.getItem("token").slice(1, -1);
     fetch("http://localhost:3000/api/accueil", {
       headers: {
         Accept: "application/json",
