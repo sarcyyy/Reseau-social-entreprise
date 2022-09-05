@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import islogged from "../script/Islogged";
 const Blockpost = () => {
   const [data, setData] = useState([]);
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token").slice(1, -1);
+
   if (islogged(token) === false) {
     window.location = "http://localhost:7200/auth/login";
   }
@@ -14,6 +15,7 @@ const Blockpost = () => {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
       },
       method: "GET",
     })
