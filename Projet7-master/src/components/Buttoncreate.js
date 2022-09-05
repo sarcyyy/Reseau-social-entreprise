@@ -1,7 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
+import islogged from "../script/Islogged";
 const Buttoncreate = () => {
+  const verifytoken = localStorage.getItem("token");
+  if (islogged(verifytoken) === true) {
+    window.location = "http://localhost:7200/accueil";
+  }
   const [Islogtrue, setIslogtrue] = useState(false);
   return (
     <div>

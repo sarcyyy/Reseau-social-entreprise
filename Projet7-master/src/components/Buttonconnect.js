@@ -1,9 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
-
+import islogged from "../script/Islogged";
 const Buttonconnect = () => {
   const [Islogtrue, setIslogtrue] = useState(false);
+  const verifytoken = localStorage.getItem("token");
+  if (islogged(verifytoken) === true) {
+    window.location = "http://localhost:7200/accueil";
+  }
   return (
     <div className="LoginAndsignup paddingT10">
       <button

@@ -9,7 +9,23 @@ const Post = ({ tweet }) => {
         <img src="/img/logo192.png" alt="" className="tweetpicsize" />
         {/* dans le futur : {tweet.imageUrl} */}
         <button>like</button>
-        <button>supprimer</button>
+        <button
+          onClick={() => {
+            const token = localStorage.getItem("token").slice(1, -1);
+            fetch("http://localhost:3000/api/accueil", {
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token,
+              },
+              method: "DELETE",
+            }).then((rep) => {
+              console.log(rep);
+            });
+          }}
+        >
+          supprimer
+        </button>
         <button>favoris</button>
       </div>
     </div>

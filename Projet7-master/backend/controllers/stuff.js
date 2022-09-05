@@ -9,9 +9,9 @@ exports.createThing = (req, res, next) => {
   tweetObjet.usersLiked = [];
   const tweet = new Tweet({
     ...tweetObjet,
-    imageUrl: `${req.protocol}://${req.get("host")}/images/${
-      req.file.filename
-    }`,
+    // imageUrl: `${req.protocol}://${req.get("host")}/images/${
+    //   req.file.filename
+    // }`,
   });
   tweet
     .save()

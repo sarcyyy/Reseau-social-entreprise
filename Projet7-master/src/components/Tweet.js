@@ -13,7 +13,7 @@ const Tweet = () => {
         id="creertweet"
         onClick={() => {
           let textcontent = document.getElementById("textcontent");
-          let filename = document.getElementById("filecontent").files[0].name;
+          let filename = document.getElementById("filecontent").files[0];
           console.log("filename");
           console.log(filename);
           let tweet = {
