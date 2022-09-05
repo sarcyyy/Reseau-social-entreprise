@@ -9,7 +9,7 @@ const Post = ({ tweet }) => {
         <img src="/img/logo192.png" alt="" className="tweetpicsize" />
         {/* dans le futur : {tweet.imageUrl} */}
         <button>like</button>
-        <button>dislike</button>
+        <button>supprimer</button>
         <button>favoris</button>
       </div>
     </div>
