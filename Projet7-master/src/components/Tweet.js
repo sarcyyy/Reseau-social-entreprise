@@ -24,7 +24,6 @@ const Tweet = () => {
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
-              Authentication: "Bearer Token",
             },
             method: "POST",
             body: JSON.stringify(tweet),

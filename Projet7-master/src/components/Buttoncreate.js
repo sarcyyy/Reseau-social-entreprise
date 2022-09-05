@@ -23,9 +23,11 @@ const Buttoncreate = () => {
               method: "POST",
               body: JSON.stringify(login),
             }).then((rep) => {
+              console.log(rep);
               if (rep.ok === true) {
                 console.log("Utilisateur créer");
                 setIslogtrue(true);
+                alert("veuillez vous connecter avec vos identifiants");
               } else {
                 if (rep.ok === false) {
                   alert("mauvaise combinaison");
@@ -34,7 +36,7 @@ const Buttoncreate = () => {
             });
           }}
         >
-          {Islogtrue ? <Navigate to="/accueil" /> : ""}
+          {Islogtrue ? <Navigate to="/auth/login" /> : ""}
           Créer un compte
         </button>
         {/* </NavLink> */}

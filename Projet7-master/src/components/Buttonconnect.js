@@ -21,16 +21,18 @@ const Buttonconnect = () => {
             },
             method: "POST",
             body: JSON.stringify(login),
-          }).then((rep) => {
-            if (rep.ok === true) {
-              console.log("Utilisateur vérifié");
-              setIslogtrue(true);
-            } else {
-              if (rep.ok === false) {
+          })
+            .then((res) => res.json())
+            .then((rep) => {
+              if (rep.token === undefined) {
                 alert("mauvaise combinaison");
+              } else {
+                const token = rep.token;
+                console.log("Utilisateur vérifié");
+                localStorage.setItem("token", JSON.stringify(token));
+                setIslogtrue(true);
               }
-            }
-          });
+            });
         }}
       >
         {Islogtrue ? <Navigate to="/accueil" /> : ""}

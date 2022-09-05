@@ -12,7 +12,13 @@ const Disconnectorconnect = () => {
          <div className="navigation">{trueornot ? component disconnect : nothing}</div>
       </ul> */}
       <NavLink to="/">
-        <button>Déconnection</button>
+        <button
+          onClick={() => {
+            localStorage.removeItem("token");
+          }}
+        >
+          Déconnection
+        </button>
       </NavLink>
     </div>
   );
