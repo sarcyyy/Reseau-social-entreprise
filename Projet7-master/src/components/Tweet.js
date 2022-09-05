@@ -13,11 +13,14 @@ const Tweet = () => {
         id="creertweet"
         onClick={() => {
           let textcontent = document.getElementById("textcontent");
-
+          let filename = document.getElementById("filecontent").files[0].name;
+          console.log("filename");
+          console.log(filename);
           let tweet = {
             name: "nom personne",
             description: textcontent.value,
             userId: "alkreo34yd",
+            imageUrl: filename,
           };
           console.log(tweet);
           fetch("http://localhost:3000/api/accueil", {

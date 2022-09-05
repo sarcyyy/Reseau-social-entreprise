@@ -11,6 +11,7 @@ const Blockpost = () => {
     if (islogged(verifytoken) === false) {
       window.location = "http://localhost:7200/auth/login";
     }
+
     const token = localStorage.getItem("token").slice(1, -1);
     fetch("http://localhost:3000/api/accueil", {
       headers: {
