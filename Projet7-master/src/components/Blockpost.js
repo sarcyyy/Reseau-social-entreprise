@@ -1,11 +1,11 @@
 import React from "react";
-import Filter from "./Filter";
+// import Filter from "./Filter";
 import Post from "./Post";
 import { useEffect, useState } from "react";
 import islogged from "../script/Islogged";
 const Blockpost = () => {
   const [data, setData] = useState([]);
-
+  const [rangevalue, setRangevalue] = useState(2);
   useEffect(() => {
     const verifytoken = localStorage.getItem("token");
     if (islogged(verifytoken) === false) {
@@ -29,12 +29,19 @@ const Blockpost = () => {
   return (
     <div>
       <div className="blockpost">
-        {data.map((tweet, index) => (
+        {data.slice(0, rangevalue).map((tweet, index) => (
           <Post key={index} tweet={tweet} />
         ))}
       </div>
-      <div>
-        <Filter />
+      <div className="filterstyle">
+        <input
+          type="number"
+          min="1"
+          max="25"
+          defaultValue={rangevalue}
+          onChange={(e) => setRangevalue(e.target.value)}
+          id="testdd"
+        />
       </div>
     </div>
   );

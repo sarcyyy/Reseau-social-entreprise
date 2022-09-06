@@ -16,7 +16,9 @@
 }
 
 .filterstyle {
-  height: 1%;
+  top: 75%;
+  left: 5%;
+  position: absolute;
   width: 15%;
   border: 2px solid grey;
   display: flex;

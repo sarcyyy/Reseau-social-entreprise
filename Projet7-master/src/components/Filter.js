@@ -3,23 +3,7 @@ import React from "react";
 const Filter = () => {
   return (
     <div className="filterstyle">
-      <ul>
-        <li className="gap">
-          <button>nom 1er departement </button>
-        </li>
-        <li className="gap">
-          <button>nom 2eme departement</button>
-        </li>
-        <li className="gap">
-          <button>nom 3eme departement</button>
-        </li>
-        <li className="gap">
-          <button>nom 4eme departement</button>
-        </li>
-        <li className="gap">
-          <button>nom 5eme departement</button>
-        </li>
-      </ul>
+      <input type="number" min="1" max="25" defaultValue="5" id="testdd" />
     </div>
   );
 };
