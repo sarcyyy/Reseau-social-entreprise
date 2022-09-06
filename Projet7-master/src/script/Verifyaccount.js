@@ -1,5 +1,5 @@
 export default async function Verifyformulaire(formulaire) {
-  fetch("http://localhost:3000/api/auth/login", {
+  return await fetch("http://localhost:3000/api/auth/login", {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",

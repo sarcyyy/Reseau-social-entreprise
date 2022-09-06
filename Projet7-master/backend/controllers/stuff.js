@@ -3,23 +3,25 @@ const fs = require("fs");
 
 exports.createThing = (req, res, next) => {
   const tweetObjet = req.body;
-  console.log(tweetObjet);
+
   delete req.body._id;
   tweetObjet.likes = 0;
   tweetObjet.usersLiked = [];
+  console.log(tweetObjet);
   const tweet = new Tweet({
     ...tweetObjet,
-    // imageUrl: `${req.protocol}://${req.get("host")}/images/${
-    //   req.file.filename
-    // }`,
+    imageUrl: `${req.protocol}://${req.get("host")}/images/${
+      req.file.filename
+    }`,
   });
   tweet
     .save()
     .then(() => res.status(201).json({ message: "tweet enregistré !" }))
-    .catch((error) => res.status(400).json({ error }));
+    .catch((error) => res.status(400).json({ message: error }));
 };
 
 exports.modifyThing = (req, res, next) => {
+  console.log(req.auth.userId);
   const tweetModifie = req.file
     ? {
         ...JSON.parse(req.body.tweet),
@@ -70,6 +72,7 @@ exports.getOneThing = (req, res, next) => {
 };
 
 exports.getAllStuff = (req, res, next) => {
+  // ajouter sort
   Tweet.find()
     .then((tweet) => res.status(200).json(tweet))
     .catch((error) => res.status(500).json({ error }));

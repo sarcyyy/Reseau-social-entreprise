@@ -26,6 +26,9 @@ const Blockpost = () => {
         setData(rep);
       });
   }, []);
+  const handleclick = (e) => {
+    setRangevalue(e.target.value);
+  };
   return (
     <div>
       <div className="blockpost">
@@ -33,13 +36,17 @@ const Blockpost = () => {
           <Post key={index} tweet={tweet} />
         ))}
       </div>
-      <div className="filterstyle">
+      <div
+        className="filterstyle"
+        onClick={handleclick}
+        rangevalue={rangevalue}
+      >
         <input
           type="number"
           min="1"
           max="25"
-          defaultValue={rangevalue}
-          onChange={(e) => setRangevalue(e.target.value)}
+          value={rangevalue}
+          onChange={handleclick}
           id="testdd"
         />
       </div>

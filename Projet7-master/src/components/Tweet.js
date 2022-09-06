@@ -5,7 +5,7 @@ const Tweet = () => {
       <div className="message">
         <p>Ecrivez votre tweet</p>
         <input type="text" id="textcontent" />
-        <input type="file" className="file" id="filecontent" />
+        <input type="file" name="image" className="file" id="filecontent" />
       </div>
       <input
         type="submit"
@@ -13,23 +13,20 @@ const Tweet = () => {
         id="creertweet"
         onClick={() => {
           let textcontent = document.getElementById("textcontent");
-          let filename = document.getElementById("filecontent").files[0];
+          let fileinput = document.getElementById("filecontent");
           console.log("filename");
-          console.log(filename);
-          let tweet = {
-            name: "nom personne",
-            description: textcontent.value,
-            userId: "alkreo34yd",
-            imageUrl: filename,
-          };
-          console.log(tweet);
+          console.log(fileinput.files[0]);
+          const file = new FormData();
+          file.append("image", fileinput.files[0]);
+          file.append("description", textcontent.value);
+          file.append("name", " ceci est le nom");
+          file.append("userId", "userid");
           fetch("http://localhost:3000/api/accueil", {
             headers: {
               Accept: "application/json",
-              "Content-Type": "application/json",
             },
             method: "POST",
-            body: JSON.stringify(tweet),
+            body: file,
           }).then((rep) => {
             console.log(rep);
           });
