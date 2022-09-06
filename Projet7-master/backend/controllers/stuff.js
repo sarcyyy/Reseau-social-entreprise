@@ -3,10 +3,11 @@ const fs = require("fs");
 
 exports.createThing = (req, res, next) => {
   const tweetObjet = req.body;
-
+  console.log(req.auth.userId);
   delete req.body._id;
   tweetObjet.likes = 0;
   tweetObjet.usersLiked = [];
+  tweetObjet.userId = req.auth.userId;
   console.log(tweetObjet);
   const tweet = new Tweet({
     ...tweetObjet,

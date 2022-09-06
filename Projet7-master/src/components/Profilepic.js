@@ -1,9 +1,15 @@
 import React from "react";
-// import { useState } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+
 import Listederoulante from "./Listederoulante";
 
 const Profilepic = () => {
-  // const [Isactive, setIsactive] = useState(false);
+  const [nompersonne, setNompersonne] = useState("");
+  useEffect(() => {
+    setNompersonne(JSON.parse(localStorage.getItem("token")).name);
+    console.log(nompersonne);
+  }, [nompersonne]);
   return (
     <div>
       <div className="avatar">
@@ -11,13 +17,11 @@ const Profilepic = () => {
           src="/img/logo192.png"
           alt="profil"
           className="picsize"
-          onClick={() => {
-            // setIsactive(true);
-          }}
+          onClick={() => {}}
         />
-        <p>Nom de la personne</p>
+        <p>{nompersonne}</p>
       </div>
-      {/* { Isactive ? <Listederoulante /> : ""} */}
+
       <Listederoulante />
     </div>
   );

@@ -1,17 +1,23 @@
 import React from "react";
 
-const Filter = ({ onclick, rangevalue }) => {
+const Filter = ({ handleclick, rangevalue }) => {
   return (
-    <div className="filterstyle">
-      <input
-        type="number"
-        min="1"
-        max="25"
-        onChange={onclick}
-        defaultValue={rangevalue}
-        id="testdd"
-        value={rangevalue}
-      />
+    <div>
+      <div
+        className="filterstyle"
+        onClick={handleclick}
+        rangevalue={rangevalue}
+      >
+        <input
+          type="number"
+          min="1"
+          max="25"
+          value={rangevalue}
+          onChange={handleclick}
+          id="testdd"
+        />
+        <button>Favoris</button>
+      </div>
     </div>
   );
 };

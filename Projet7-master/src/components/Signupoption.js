@@ -15,6 +15,11 @@ const Signupoption = () => {
           <label htmlFor="Password" className=""></label>
           <input type="Password" name="" id="createpassword" />
         </div>
+        <div className="textcenter">
+          <p>Votre nom et prénom</p>
+          <label htmlFor="name" className=""></label>
+          <input type="text" name="" id="createname" />
+        </div>
       </div>
       <Buttoncreate />
     </div>

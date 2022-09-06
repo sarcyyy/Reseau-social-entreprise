@@ -4,10 +4,12 @@ import { Navigate } from "react-router-dom";
 import islogged from "../script/Islogged";
 const Buttonconnect = () => {
   const [Islogtrue, setIslogtrue] = useState(false);
-  const verifytoken = localStorage.getItem("token");
-  if (islogged(verifytoken) === true) {
+  const testtoken = localStorage.getItem("token");
+
+  if (islogged(testtoken) === true) {
     window.location = "http://localhost:7200/accueil";
   }
+
   return (
     <div className="LoginAndsignup paddingT10">
       <button
@@ -31,8 +33,11 @@ const Buttonconnect = () => {
               if (rep.token === undefined) {
                 alert("mauvaise combinaison");
               } else {
-                const token = rep.token;
+                // const token = rep.token;
+                const token = { name: rep.name, token: rep.token };
+
                 console.log("Utilisateur vérifié");
+                // localStorage.setItem("token", JSON.stringify(token));
                 localStorage.setItem("token", JSON.stringify(token));
                 setIslogtrue(true);
               }

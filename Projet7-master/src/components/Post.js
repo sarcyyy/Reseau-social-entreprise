@@ -6,8 +6,7 @@ const Post = ({ tweet }) => {
       <div className="bordertop">
         <p>{tweet.name}</p>
         <p>{tweet.description}</p>
-        <img src="/img/logo192.png" alt="" className="tweetpicsize" />
-        {/* dans le futur : {tweet.imageUrl} */}
+        <img src={tweet.imageUrl} alt="" className="tweetpicsize" />
         <button>like</button>
         <button
           onClick={() => {
@@ -19,9 +18,7 @@ const Post = ({ tweet }) => {
                 Authorization: "Bearer " + token,
               },
               method: "DELETE",
-            }).then((rep) => {
-              console.log(rep);
-            });
+            }).then((rep) => {});
           }}
         >
           supprimer

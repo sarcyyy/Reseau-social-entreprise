@@ -18,10 +18,12 @@
 .filterstyle {
   top: 75%;
   left: 5%;
-  position: absolute;
-  width: 15%;
-  border: 2px solid grey;
+  width: 100px;
+  gap: 10px;
+  position: fixed;
+  border: 1px solid grey;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 .gap {

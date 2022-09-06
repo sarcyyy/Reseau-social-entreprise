@@ -3,16 +3,18 @@ import React from "react";
 import Post from "./Post";
 import { useEffect, useState } from "react";
 import islogged from "../script/Islogged";
+import Filter from "./Filter";
 const Blockpost = () => {
   const [data, setData] = useState([]);
   const [rangevalue, setRangevalue] = useState(2);
   useEffect(() => {
-    const verifytoken = localStorage.getItem("token");
-    if (islogged(verifytoken) === false) {
+    const testtoken = localStorage.getItem("token");
+
+    if (islogged(testtoken) === false) {
       window.location = "http://localhost:7200/auth/login";
     }
-
-    const token = localStorage.getItem("token").slice(1, -1);
+    const verifytoken = JSON.parse(localStorage.getItem("token")).token;
+    const token = verifytoken;
     fetch("http://localhost:3000/api/accueil", {
       headers: {
         Accept: "application/json",
@@ -36,20 +38,7 @@ const Blockpost = () => {
           <Post key={index} tweet={tweet} />
         ))}
       </div>
-      <div
-        className="filterstyle"
-        onClick={handleclick}
-        rangevalue={rangevalue}
-      >
-        <input
-          type="number"
-          min="1"
-          max="25"
-          value={rangevalue}
-          onChange={handleclick}
-          id="testdd"
-        />
-      </div>
+      <Filter handleclick={handleclick} rangevalue={rangevalue} />
     </div>
   );
 };
