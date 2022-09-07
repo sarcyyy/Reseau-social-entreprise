@@ -7,7 +7,6 @@ import Tweet from "../components/Tweet";
 const TimeLine = () => {
   return (
     <div>
-      {/* Dans le futur, si connecter, navigation contiendra Disconnectedorconnect */}
       <Profilepic />
       <Disconnectorconnect />
       <Tweet />
