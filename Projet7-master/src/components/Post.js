@@ -1,5 +1,3 @@
-import React from "react";
-
 const Post = ({ tweet }) => {
   return (
     <div className="poststyle">
@@ -10,8 +8,8 @@ const Post = ({ tweet }) => {
         <button>like</button>
         <button
           onClick={() => {
-            const token = localStorage.getItem("token").slice(1, -1);
-            fetch("http://localhost:3000/api/accueil", {
+            const token = JSON.parse(localStorage.getItem("token")).token;
+            fetch("http://localhost:3000/api/accueil/" + tweet._id, {
               headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",

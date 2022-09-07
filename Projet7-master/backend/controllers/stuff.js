@@ -55,13 +55,22 @@ exports.modifyThing = (req, res, next) => {
 };
 exports.deleteThing = (req, res, next) => {
   Tweet.findOne({ _id: req.params.id })
+
     .then((tweet) => {
-      const filename = tweet.imageUrl.split("/images/")[1];
-      fs.unlink(`images/${filename}`, () => {
-        Tweet.deleteOne({ _id: req.params.id })
-          .then(() => res.status(200).json({ message: "tweet supprimé !" }))
-          .catch((error) => res.status(400).json({ error }));
-      });
+      console.log("utilisateur qui demande la supression");
+      console.log(req.auth.userId);
+      console.log("utilisateur qui a créer la sauce");
+      console.log(tweet.userId);
+      if (req.auth.userId === tweet.userId) {
+        const filename = tweet.imageUrl.split("/images/")[1];
+        fs.unlink(`images/${filename}`, () => {
+          Tweet.deleteOne({ _id: req.params.id })
+            .then(() => res.status(200).json({ message: "tweet supprimé !" }))
+            .catch((error) => res.status(400).json({ error }));
+        });
+      } else {
+        res.status(401).json("Not authorized");
+      }
     })
     .catch((error) => res.status(500).json({ error }));
 };
