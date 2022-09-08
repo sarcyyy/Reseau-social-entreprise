@@ -15,6 +15,7 @@ const Disconnectorconnect = () => {
         <button
           onClick={() => {
             localStorage.removeItem("token");
+            localStorage.removeItem("id");
           }}
         >
           Déconnection

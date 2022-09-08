@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import TimeLine from "./pages/TimeLine";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Modify from "./pages/Modify";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Route path="/auth/login" element={<Login />}></Route>
         <Route path="/auth/signup" element={<Signup />}></Route>
         <Route path="/accueil" element={<TimeLine />}></Route>
+        <Route path="/accueil/modifier" element={<Modify />}></Route>
       </Routes>
     </BrowserRouter>
   );

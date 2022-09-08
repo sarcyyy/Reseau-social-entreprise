@@ -33,11 +33,10 @@ const Buttonconnect = () => {
               if (rep.token === undefined) {
                 alert("mauvaise combinaison");
               } else {
-                // const token = rep.token;
                 const token = { name: rep.name, token: rep.token };
 
                 console.log("Utilisateur vérifié");
-                // localStorage.setItem("token", JSON.stringify(token));
+
                 localStorage.setItem("token", JSON.stringify(token));
                 setIslogtrue(true);
               }
