@@ -6,7 +6,27 @@ const Post = ({ tweet }) => {
         <p>{tweet.name}</p>
         <p>{tweet.description}</p>
         <img src={tweet.imageUrl} alt="" className="tweetpicsize" />
-        <button>like</button>
+        <button
+          onClick={() => {
+            const token = JSON.parse(localStorage.getItem("token")).token;
+            const test = {
+              like: 1,
+            };
+            fetch("http://localhost:3000/api/accueil/" + tweet._id + "/like", {
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token,
+              },
+              method: "POST",
+              body: JSON.stringify(test),
+            }).then((rep) => {
+              console.log(rep);
+            });
+          }}
+        >
+          like
+        </button>
         <button
           onClick={() => {
             const token = JSON.parse(localStorage.getItem("token")).token;
@@ -28,19 +48,6 @@ const Post = ({ tweet }) => {
               const id = tweet._id;
               localStorage.setItem("id", JSON.stringify(id));
             }}
-            // onClick={() => {
-            //   const token = JSON.parse(localStorage.getItem("token")).token;
-            //   fetch("http://localhost:3000/api/accueil/" + tweet._id, {
-            //     headers: {
-            //       Accept: "application/json",
-            //       "Content-Type": "application/json",
-            //       Authorization: "Bearer " + token,
-            //     },
-            //     method: "PUT",
-            //   }).then((rep) => {
-            //     console.log(rep);
-            //   });
-            // }}
           >
             modifier
           </button>
