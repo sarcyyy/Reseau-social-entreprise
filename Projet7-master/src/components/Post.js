@@ -25,8 +25,9 @@ const Post = ({ tweet }) => {
             });
           }}
         >
-          like
+          like ( {tweet.likes} likes)
         </button>
+        {/* utiliser useState pour check si il a like pour changer l'affichage? */}
         <button
           onClick={() => {
             const token = JSON.parse(localStorage.getItem("token")).token;
