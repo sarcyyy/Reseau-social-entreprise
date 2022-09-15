@@ -30,14 +30,20 @@ const Buttonconnect = () => {
           })
             .then((res) => res.json())
             .then((rep) => {
+              console.log(rep);
               if (rep.token === undefined) {
                 alert("mauvaise combinaison");
               } else {
-                const token = { name: rep.name, token: rep.token };
+                const token = {
+                  name: rep.name,
+                  token: rep.token,
+                  userId: rep.userId,
+                };
 
                 console.log("Utilisateur vérifié");
 
                 localStorage.setItem("token", JSON.stringify(token));
+
                 setIslogtrue(true);
               }
             });

@@ -15,8 +15,6 @@ const Tweet = () => {
           let textcontent = document.getElementById("textcontent");
           let fileinput = document.getElementById("filecontent");
           let name = JSON.parse(localStorage.getItem("token")).name;
-          console.log("filename");
-          console.log(fileinput.files[0]);
           const file = new FormData();
           file.append("image", fileinput.files[0]);
           file.append("description", textcontent.value);

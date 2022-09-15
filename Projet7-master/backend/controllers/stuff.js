@@ -1,6 +1,6 @@
 const Tweet = require("../models/Tweet");
 const fs = require("fs");
-
+// modifier nom exports
 exports.createThing = (req, res, next) => {
   const tweetObjet = req.body;
   console.log(req.auth.userId);
@@ -24,12 +24,21 @@ exports.createThing = (req, res, next) => {
 exports.modifyThing = (req, res, next) => {
   Tweet.findOne({ _id: req.params.id }).then((tweet) => {
     console.log(req.body);
-    // || req.file.filename === undefined
+    // req.file?.filename
+    console.log("reqfile", req.file);
     // Comment faire si pas de fichier?
-    if (tweet.userId !== req.auth.userId || req.body.description === "") {
-      const filename = req.file.filename;
-      fs.unlink(`images/${filename}`, () => {});
-      res.status(401).json({ message: "Not authorized" });
+    if (
+      tweet.userId !== req.auth.userId ||
+      req.body.description === "" ||
+      req.file === undefined
+    ) {
+      if (req.file === undefined) {
+        res.status(401).json({ message: "Not authorized" });
+      } else {
+        const filename = req.file.filename;
+        fs.unlink(`images/${filename}`, () => {});
+        res.status(401).json({ message: "Not authorized" });
+      }
     } else {
       const tweetModifie = req.file
         ? {
