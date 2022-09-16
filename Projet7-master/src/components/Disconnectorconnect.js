@@ -5,21 +5,17 @@ const Disconnectorconnect = () => {
   //   const [Isconnected, setIsconnected] = useState(
   "Appel de la fonction connected";
   //   );
-
+  const removetoken = (e) => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("id");
+  };
   return (
     <div className="disconnect">
       {/* <ul>
          <div className="navigation">{trueornot ? component disconnect : nothing}</div>
       </ul> */}
       <NavLink to="/">
-        <button
-          onClick={() => {
-            localStorage.removeItem("token");
-            localStorage.removeItem("id");
-          }}
-        >
-          Déconnection
-        </button>
+        <button onClick={removetoken}>Déconnection</button>
       </NavLink>
     </div>
   );
