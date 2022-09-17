@@ -16,8 +16,9 @@
 }
 
 .filterstyle {
-  top: 75%;
-  left: 5%;
+  top: 55%;
+  left: 15%;
+  padding: 15px;
   width: 100px;
   gap: 10px;
   position: fixed;
@@ -41,11 +42,9 @@
 .tweetblock {
   display: flex;
   justify-content: center;
+
   margin-top: 5%;
-  border: 2px solid grey;
-  border-radius: 15px 15px 15px 15px;
-  margin-left: 25%;
-  margin-right: 25%;
+
   padding: 30px;
   text-align: center;
 }

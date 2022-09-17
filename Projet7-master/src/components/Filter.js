@@ -1,22 +1,25 @@
 import React from "react";
-
+import { Slider } from "@mui/material";
+import { Button } from "@mui/material";
 const Filter = ({ handleclick, rangevalue }) => {
   return (
     <div>
-      <div
-        className="filterstyle"
-        onClick={handleclick}
-        rangevalue={rangevalue}
-      >
-        <input
-          type="number"
-          min="1"
-          max="25"
+      <div className="filterstyle">
+        <p className="textcenter">Filtres</p>
+        <Slider
+          aria-label="Temperature"
           value={rangevalue}
+          valueLabelDisplay="auto"
           onChange={handleclick}
-          id="testdd"
+          step={5}
+          marks
+          min={5}
+          max={15}
         />
-        <button>Favoris</button>
+
+        <Button variant="contained" size="small">
+          Post liké
+        </Button>
       </div>
     </div>
   );

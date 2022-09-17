@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { Button } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 // regarder MaterialUI
@@ -88,20 +89,23 @@ const Post = ({ tweet }) => {
           </div>
         )}
         {isthecreator ? (
-          <button onClick={functionDelete}>supprimer</button>
+          <Button variant="contained" onClick={functionDelete}>
+            supprimer
+          </Button>
         ) : (
           ""
         )}
         {isthecreator ? (
           <NavLink to="/accueil/modifier">
-            <button
+            <Button
+              variant="contained"
               onClick={() => {
                 const id = tweet._id;
                 localStorage.setItem("id", JSON.stringify(id));
               }}
             >
               modifier
-            </button>
+            </Button>
           </NavLink>
         ) : (
           ""

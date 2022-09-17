@@ -1,4 +1,10 @@
 .message {
   display: flex;
   gap: 15px;
+  width: 50%;
+  border: 2px solid grey;
+  border-radius: 15px 15px 15px 15px;
+  padding: 30px;
+  margin-left: 12%;
+  justify-content: center;
 }
