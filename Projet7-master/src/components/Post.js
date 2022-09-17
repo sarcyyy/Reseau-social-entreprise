@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 // regarder MaterialUI
 const Post = ({ tweet }) => {
   const functionLike = (e) => {
@@ -54,14 +55,20 @@ const Post = ({ tweet }) => {
     }).then((rep) => {});
   };
   const [likeornot, setLikeornot] = useState(false);
+  const [isthecreator, setIsthecreator] = useState(false);
   const [tablelike] = useState(tweet.usersLiked);
   const [nblike, setNblike] = useState(tweet.likes);
   const userId = JSON.parse(localStorage.getItem("token")).userId;
+
   useEffect(() => {
     if (tablelike.includes(userId)) {
       setLikeornot(true);
     }
-  }, []);
+    if (tweet.userId === userId) {
+      setIsthecreator(true);
+    }
+    console.log(tweet);
+  }, [tablelike, tweet, userId]);
 
   return (
     <div className="poststyle">
@@ -70,21 +77,35 @@ const Post = ({ tweet }) => {
         <p>{tweet.description}</p>
         <img src={tweet.imageUrl} alt="" className="tweetpicsize" />
         {likeornot ? (
-          <button onClick={functionDislike}>dislike ( {nblike} likes)</button>
+          <div>
+            <FavoriteIcon onClick={functionDislike} />
+            <p>{nblike}</p>
+          </div>
         ) : (
-          <button onClick={functionLike}>like ( {nblike} likes)</button>
+          <div>
+            <FavoriteBorderIcon onClick={functionLike} />
+            <p>{nblike}</p>
+          </div>
         )}
-        <button onClick={functionDelete}>supprimer</button>
-        <NavLink to="/accueil/modifier">
-          <button
-            onClick={() => {
-              const id = tweet._id;
-              localStorage.setItem("id", JSON.stringify(id));
-            }}
-          >
-            modifier
-          </button>
-        </NavLink>
+        {isthecreator ? (
+          <button onClick={functionDelete}>supprimer</button>
+        ) : (
+          ""
+        )}
+        {isthecreator ? (
+          <NavLink to="/accueil/modifier">
+            <button
+              onClick={() => {
+                const id = tweet._id;
+                localStorage.setItem("id", JSON.stringify(id));
+              }}
+            >
+              modifier
+            </button>
+          </NavLink>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

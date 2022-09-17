@@ -6,7 +6,7 @@ import islogged from "../script/Islogged";
 import Filter from "./Filter";
 const Blockpost = () => {
   const [data, setData] = useState([]);
-  const [rangevalue, setRangevalue] = useState(2);
+  const [rangevalue, setRangevalue] = useState(5);
   useEffect(() => {
     const testtoken = localStorage.getItem("token");
 
@@ -28,9 +28,11 @@ const Blockpost = () => {
         setData(rep);
       });
   }, []);
+
   const handleclick = (e) => {
     setRangevalue(e.target.value);
   };
+
   return (
     <div>
       <div className="blockpost">

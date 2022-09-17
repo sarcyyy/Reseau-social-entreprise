@@ -1,24 +1,19 @@
 import React from "react";
 import Buttoncreate from "./Buttoncreate";
+import { TextField } from "@mui/material";
 
 const Signupoption = () => {
   return (
     <div>
       <div className="LoginAndsignup paddingT10">
         <div className="textcenter">
-          <p className="">Email d'entreprise</p>
-          <label htmlFor="Email"></label>
-          <input type="text" id="createemail" />
+          <TextField type="email" label="email" id="createemail" />
         </div>
         <div className="textcenter">
-          <p>Mot de passe (8 caractères minimum)</p>
-          <label htmlFor="Password" className=""></label>
-          <input type="Password" name="" id="createpassword" />
+          <TextField type="Password" label="Mot de passe" id="createpassword" />
         </div>
         <div className="textcenter">
-          <p>Votre nom et prénom</p>
-          <label htmlFor="name" className=""></label>
-          <input type="text" name="" id="createname" />
+          <TextField type="text" label="nom et prénom" id="createname" />
         </div>
       </div>
       <Buttoncreate />

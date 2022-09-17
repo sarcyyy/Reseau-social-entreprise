@@ -1,5 +1,6 @@
 // import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { Button } from "@mui/material";
 const Disconnectorconnect = () => {
   //   const [trueornot, setTrueornot] = useState(true);
   //   const [Isconnected, setIsconnected] = useState(
@@ -11,11 +12,10 @@ const Disconnectorconnect = () => {
   };
   return (
     <div className="disconnect">
-      {/* <ul>
-         <div className="navigation">{trueornot ? component disconnect : nothing}</div>
-      </ul> */}
       <NavLink to="/">
-        <button onClick={removetoken}>Déconnection</button>
+        <Button variant="outlined" onClick={removetoken}>
+          Déconnection
+        </Button>
       </NavLink>
     </div>
   );

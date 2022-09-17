@@ -97,6 +97,7 @@ exports.getOneThing = (req, res, next) => {
 exports.getAllStuff = (req, res, next) => {
   // ajouter sort
   Tweet.find()
+    .sort({ _id: -1 })
     .then((tweet) => res.status(200).json(tweet))
     .catch((error) => res.status(500).json({ error }));
 };

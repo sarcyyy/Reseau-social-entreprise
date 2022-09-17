@@ -1,8 +1,13 @@
+import { TextField } from "@mui/material";
+import { Button } from "@mui/material";
+
 import React from "react";
+
 const Tweet = () => {
   const createtweet = (e) => {
     let textcontent = document.getElementById("textcontent");
     let fileinput = document.getElementById("filecontent");
+    console.log(fileinput);
     let name = JSON.parse(localStorage.getItem("token")).name;
     const file = new FormData();
     file.append("image", fileinput.files[0]);
@@ -25,11 +30,22 @@ const Tweet = () => {
   return (
     <div className="tweetblock">
       <div className="message">
-        <p>Ecrivez votre tweet</p>
-        <input type="text" id="textcontent" />
-        <input type="file" name="image" className="file" id="filecontent" />
+        <TextField type="text" label="Ecrivez votre tweet" id="textcontent" />
+        <Button variant="contained" component="label">
+          Importer l'image
+          <input
+            hidden
+            accept="image/*"
+            multiple
+            type="file"
+            id="filecontent"
+          />
+        </Button>
+
+        <Button variant="contained" id="creertweet" onClick={createtweet}>
+          Envoyer
+        </Button>
       </div>
-      <input type="submit" name="" id="creertweet" onClick={createtweet} />
     </div>
   );
 };

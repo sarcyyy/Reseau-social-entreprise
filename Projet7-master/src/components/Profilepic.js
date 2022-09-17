@@ -2,8 +2,6 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 
-import Listederoulante from "./Listederoulante";
-
 const Profilepic = () => {
   const [nompersonne, setNompersonne] = useState("");
   useEffect(() => {
@@ -14,15 +12,13 @@ const Profilepic = () => {
     <div>
       <div className="avatar">
         <img
-          src="/img/logo192.png"
+          src="/img/logogroupo.png"
           alt="profil"
           className="picsize"
           onClick={() => {}}
         />
         <p>{nompersonne}</p>
       </div>
-
-      <Listederoulante />
     </div>
   );
 };

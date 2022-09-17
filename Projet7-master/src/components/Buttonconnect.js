@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import islogged from "../script/Islogged";
+import { Button } from "@mui/material";
 const Buttonconnect = () => {
   const [Islogtrue, setIslogtrue] = useState(false);
   const testtoken = localStorage.getItem("token");
@@ -46,10 +47,10 @@ const Buttonconnect = () => {
 
   return (
     <div className="LoginAndsignup paddingT10">
-      <button onClick={fetchconnect}>
+      <Button variant="outlined" onClick={fetchconnect}>
         {Islogtrue ? <Navigate to="/accueil" /> : ""}
         Connection
-      </button>
+      </Button>
     </div>
   );
 };

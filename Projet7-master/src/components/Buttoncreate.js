@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
+import { Button } from "@mui/material";
 import islogged from "../script/Islogged";
 const Buttoncreate = () => {
   const testtoken = localStorage.getItem("token");
@@ -42,10 +43,10 @@ const Buttoncreate = () => {
   return (
     <div>
       <div className="LoginAndsignup paddingT10">
-        <button onClick={fetchcreate}>
+        <Button variant="contained" onClick={fetchcreate}>
           {Islogtrue ? <Navigate to="/auth/login" /> : ""}
           Créer un compte
-        </button>
+        </Button>
         {/* </NavLink> */}
       </div>
     </div>
