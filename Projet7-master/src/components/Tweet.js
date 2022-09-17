@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 
 import React from "react";
 
-const Tweet = () => {
+const Tweet = ({ forceUpdate, reducerValue }) => {
   const createtweet = (e) => {
     let textcontent = document.getElementById("textcontent");
     let fileinput = document.getElementById("filecontent");
@@ -26,6 +26,9 @@ const Tweet = () => {
     }).then((rep) => {
       console.log(rep);
     });
+    console.log(reducerValue);
+    forceUpdate();
+    console.log(reducerValue);
   };
   return (
     <div className="tweetblock">

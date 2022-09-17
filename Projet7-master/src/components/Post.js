@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 // regarder MaterialUI
-const Post = ({ tweet }) => {
+const Post = ({ tweet, forceUpdate, reducerValue }) => {
   const functionLike = (e) => {
     const token = JSON.parse(localStorage.getItem("token")).token;
     const test = {
@@ -53,7 +53,10 @@ const Post = ({ tweet }) => {
         Authorization: "Bearer " + token,
       },
       method: "DELETE",
-    }).then((rep) => {});
+    }).then((rep) => {
+      forceUpdate();
+    });
+    forceUpdate();
   };
   const [likeornot, setLikeornot] = useState(false);
   const [isthecreator, setIsthecreator] = useState(false);
@@ -64,12 +67,16 @@ const Post = ({ tweet }) => {
   useEffect(() => {
     if (tablelike.includes(userId)) {
       setLikeornot(true);
+    } else {
+      setLikeornot(false);
     }
     if (tweet.userId === userId) {
       setIsthecreator(true);
     }
-    console.log(tweet);
-  }, [tablelike, tweet, userId]);
+    if (tweet.userId !== userId) {
+      setIsthecreator(false);
+    }
+  }, [tablelike, tweet.userId, userId, reducerValue]);
 
   return (
     <div className="poststyle">

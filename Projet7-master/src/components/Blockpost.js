@@ -1,10 +1,9 @@
 import React from "react";
-// import Filter from "./Filter";
 import Post from "./Post";
 import { useEffect, useState } from "react";
 import islogged from "../script/Islogged";
 import Filter from "./Filter";
-const Blockpost = () => {
+const Blockpost = ({ forceUpdate, reducerValue }) => {
   const [data, setData] = useState([]);
   const [rangevalue, setRangevalue] = useState(5);
   useEffect(() => {
@@ -27,7 +26,7 @@ const Blockpost = () => {
       .then((rep) => {
         setData(rep);
       });
-  }, []);
+  }, [reducerValue]);
 
   const handleclick = (e) => {
     setRangevalue(e.target.value);
@@ -37,7 +36,12 @@ const Blockpost = () => {
     <div>
       <div className="blockpost">
         {data.slice(0, rangevalue).map((tweet, index) => (
-          <Post key={index} tweet={tweet} />
+          <Post
+            key={index}
+            tweet={tweet}
+            forceUpdate={forceUpdate}
+            reducerValue={reducerValue}
+          />
         ))}
       </div>
       <Filter handleclick={handleclick} rangevalue={rangevalue} />
