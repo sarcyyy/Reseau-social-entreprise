@@ -46,3 +46,15 @@ export function dislikefetch(tweetid, forceUpdate) {
     forceUpdate();
   });
 }
+export function createfetch(file, forceUpdate) {
+  fetch("http://localhost:3000/api/accueil", {
+    headers: {
+      Accept: "application/json",
+      Authorization: "Bearer " + token,
+    },
+    method: "POST",
+    body: file,
+  }).then((rep) => {
+    forceUpdate();
+  });
+}

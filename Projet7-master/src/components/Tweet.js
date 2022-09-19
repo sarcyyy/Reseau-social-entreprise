@@ -1,34 +1,19 @@
 import { TextField } from "@mui/material";
 import { Button } from "@mui/material";
-
+import { createfetch } from "../script/Allfetch";
 import React from "react";
 
 const Tweet = ({ forceUpdate, reducerValue }) => {
   const createtweet = (e) => {
     let textcontent = document.getElementById("textcontent");
     let fileinput = document.getElementById("filecontent");
-    console.log(fileinput);
     let name = JSON.parse(localStorage.getItem("token")).name;
     const file = new FormData();
     file.append("image", fileinput.files[0]);
     file.append("description", textcontent.value);
     file.append("name", name);
     file.append("userId", "userid");
-    const verifytoken = JSON.parse(localStorage.getItem("token")).token;
-    const token = verifytoken;
-    fetch("http://localhost:3000/api/accueil", {
-      headers: {
-        Accept: "application/json",
-        Authorization: "Bearer " + token,
-      },
-      method: "POST",
-      body: file,
-    }).then((rep) => {
-      console.log(rep);
-    });
-    console.log(reducerValue);
-    forceUpdate();
-    console.log(reducerValue);
+    createfetch(file, forceUpdate);
   };
   return (
     <div className="tweetblock">
