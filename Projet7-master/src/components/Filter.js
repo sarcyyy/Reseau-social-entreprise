@@ -1,7 +1,20 @@
 import React from "react";
+
 import { Slider } from "@mui/material";
 import { Button } from "@mui/material";
-const Filter = ({ handleclick, rangevalue }) => {
+import { useState } from "react";
+import { useEffect } from "react";
+
+const Filter = ({ handleclick, rangevalue, tweet, maplike, setMaplike }) => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    setData(tweet);
+  }, [data, tweet, maplike]);
+  const maplikeedit = (e) => {
+    setMaplike(true);
+  };
+
   return (
     <div>
       <div className="filterstyle">
@@ -17,7 +30,7 @@ const Filter = ({ handleclick, rangevalue }) => {
           max={15}
         />
 
-        <Button variant="contained" size="small">
+        <Button variant="contained" size="small" onClick={maplikeedit}>
           Post liké
         </Button>
       </div>

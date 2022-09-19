@@ -6,7 +6,6 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { deletefetch, dislikefetch, likefetch } from "../script/Allfetch";
 
-// regarder MaterialUI
 const Post = ({ tweet, forceUpdate, reducerValue }) => {
   const functionLike = (e) => {
     likefetch(tweet._id, forceUpdate);

@@ -6,6 +6,10 @@ import Filter from "./Filter";
 const Blockpost = ({ forceUpdate, reducerValue }) => {
   const [data, setData] = useState([]);
   const [rangevalue, setRangevalue] = useState(5);
+  const [maplike, setMaplike] = useState(false);
+
+  // const userId = JSON.parse(localStorage.getItem("token")).userId;
+
   useEffect(() => {
     const testtoken = localStorage.getItem("token");
 
@@ -26,7 +30,7 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
       .then((rep) => {
         setData(rep);
       });
-  }, [reducerValue]);
+  }, [reducerValue, maplike]);
 
   const handleclick = (e) => {
     setRangevalue(e.target.value);
@@ -35,16 +39,26 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
   return (
     <div>
       <div className="blockpost">
-        {data.slice(0, rangevalue).map((tweet, index) => (
-          <Post
-            key={index}
-            tweet={tweet}
-            forceUpdate={forceUpdate}
-            reducerValue={reducerValue}
-          />
-        ))}
+        {maplike
+          ? console.log("tt les likes")
+          : data
+              .slice(0, rangevalue)
+              .map((tweet, index) => (
+                <Post
+                  key={index}
+                  tweet={tweet}
+                  forceUpdate={forceUpdate}
+                  reducerValue={reducerValue}
+                />
+              ))}
       </div>
-      <Filter handleclick={handleclick} rangevalue={rangevalue} />
+      <Filter
+        handleclick={handleclick}
+        rangevalue={rangevalue}
+        tweet={data}
+        maplike={maplike}
+        setMaplike={setMaplike}
+      />
     </div>
   );
 };
