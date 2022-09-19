@@ -11,4 +11,4 @@ const tweetSchema = mongoose.Schema({
   usersLiked: { type: [String], required: true },
 });
 
-module.exports = mongoose.model("Tweefgt", tweetSchema);
+module.exports = mongoose.model("Tweet", tweetSchema);

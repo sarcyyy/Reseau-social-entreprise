@@ -21,7 +21,7 @@ const Post = ({ tweet, forceUpdate, reducerValue }) => {
     localStorage.setItem("id", JSON.stringify(id));
   };
   const [likeornot, setLikeornot] = useState(false);
-  const [isthecreator, setIsthecreator] = useState(false);
+  // const [isthecreator, setIsthecreator] = useState(false);
   const userId = JSON.parse(localStorage.getItem("token")).userId;
 
   useEffect(() => {
@@ -30,12 +30,12 @@ const Post = ({ tweet, forceUpdate, reducerValue }) => {
     } else {
       setLikeornot(false);
     }
-    if (tweet.userId === userId) {
-      setIsthecreator(true);
-    }
-    if (tweet.userId !== userId) {
-      setIsthecreator(false);
-    }
+    // if (tweet.userId === userId) {
+    //   setIsthecreator(true);
+    // }
+    // if (tweet.userId !== userId) {
+    //   setIsthecreator(false);
+    // }
   }, [tweet.usersLiked, tweet.userId, userId, reducerValue]);
 
   return (
@@ -55,22 +55,22 @@ const Post = ({ tweet, forceUpdate, reducerValue }) => {
             <p>{tweet.likes}</p>
           </div>
         )}
-        {isthecreator ? (
-          <Button variant="contained" onClick={functionDelete}>
-            supprimer
+        {/* {isthecreator ? ( */}
+        <Button variant="contained" onClick={functionDelete}>
+          supprimer
+        </Button>
+        {/* ) : (
+          ""
+        )} */}
+        {/* {isthecreator ? ( */}
+        <NavLink to="/accueil/modifier">
+          <Button variant="contained" onClick={storageidmodify}>
+            modifier
           </Button>
-        ) : (
+        </NavLink>
+        {/* ) : (
           ""
-        )}
-        {isthecreator ? (
-          <NavLink to="/accueil/modifier">
-            <Button variant="contained" onClick={storageidmodify}>
-              modifier
-            </Button>
-          </NavLink>
-        ) : (
-          ""
-        )}
+        )} */}
       </div>
     </div>
   );

@@ -1,11 +1,11 @@
-const token = JSON.parse(localStorage.getItem("token")).token;
+const token = JSON.parse(localStorage.getItem("token"));
 
 export function deletefetch(tweetid, forceUpdate) {
   return fetch("http://localhost:3000/api/accueil/" + tweetid, {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: "Bearer " + token,
+      Authorization: "Bearer " + token.token,
     },
     method: "DELETE",
   }).then((rep) => {
@@ -20,7 +20,7 @@ export function likefetch(tweetid, forceUpdate) {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: "Bearer " + token,
+      Authorization: "Bearer " + token.token,
     },
     method: "POST",
     body: JSON.stringify(like),
@@ -37,7 +37,7 @@ export function dislikefetch(tweetid, forceUpdate) {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: "Bearer " + token,
+      Authorization: "Bearer " + token.token,
     },
     method: "POST",
     body: JSON.stringify(dislike),
@@ -50,7 +50,7 @@ export function createfetch(file, forceUpdate) {
   fetch("http://localhost:3000/api/accueil", {
     headers: {
       Accept: "application/json",
-      Authorization: "Bearer " + token,
+      Authorization: "Bearer " + token.token,
     },
     method: "POST",
     body: file,

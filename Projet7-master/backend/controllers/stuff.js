@@ -1,5 +1,6 @@
 const Tweet = require("../models/Tweet");
 const fs = require("fs");
+const User = require("../models/User");
 // modifier nom exports
 exports.createThing = (req, res, next) => {
   const tweetObjet = req.body;
@@ -67,25 +68,74 @@ exports.modifyThing = (req, res, next) => {
   });
 };
 exports.deleteThing = (req, res, next) => {
-  Tweet.findOne({ _id: req.params.id })
+  User.findOne({ _id: req.auth.userId }).then((adminbrut) => {
+    if (adminbrut.admin !== undefined) {
+      const admin = adminbrut.admin;
+      Tweet.findOne({ _id: req.params.id })
 
-    .then((tweet) => {
-      console.log("utilisateur qui demande la supression");
-      console.log(req.auth.userId);
-      console.log("utilisateur qui a créer la sauce");
-      console.log(tweet.userId);
-      if (req.auth.userId === tweet.userId) {
-        const filename = tweet.imageUrl.split("/images/")[1];
-        fs.unlink(`images/${filename}`, () => {
-          Tweet.deleteOne({ _id: req.params.id })
-            .then(() => res.status(200).json({ message: "tweet supprimé !" }))
-            .catch((error) => res.status(400).json({ error }));
-        });
-      } else {
-        res.status(401).json("Not authorized");
-      }
-    })
-    .catch((error) => res.status(500).json({ error }));
+        .then((tweet) => {
+          console.log(admin);
+          console.log("utilisateur qui demande la supression");
+          console.log(req.auth.userId);
+          console.log("utilisateur qui a créer la sauce");
+          console.log(tweet.userId);
+          if (req.auth.userId === tweet.userId || admin === "true") {
+            const filename = tweet.imageUrl.split("/images/")[1];
+            fs.unlink(`images/${filename}`, () => {
+              Tweet.deleteOne({ _id: req.params.id })
+                .then(() =>
+                  res.status(200).json({ message: "tweet supprimé !" })
+                )
+                .catch((error) => res.status(400).json({ error }));
+            });
+          } else {
+            res.status(401).json("Not authorized");
+          }
+        })
+        .catch((error) => res.status(500).json({ error }));
+    } else {
+      Tweet.findOne({ _id: req.params.id })
+
+        .then((tweet) => {
+          console.log("utilisateur qui demande la supression");
+          console.log(req.auth.userId);
+          console.log("utilisateur qui a créer la sauce");
+          console.log(tweet.userId);
+          if (req.auth.userId === tweet.userId) {
+            const filename = tweet.imageUrl.split("/images/")[1];
+            fs.unlink(`images/${filename}`, () => {
+              Tweet.deleteOne({ _id: req.params.id })
+                .then(() =>
+                  res.status(200).json({ message: "tweet supprimé !" })
+                )
+                .catch((error) => res.status(400).json({ error }));
+            });
+          } else {
+            res.status(401).json("Not authorized");
+          }
+        })
+        .catch((error) => res.status(500).json({ error }));
+    }
+  });
+  // Tweet.findOne({ _id: req.params.id })
+
+  //   .then((tweet) => {
+  //     console.log("utilisateur qui demande la supression");
+  //     console.log(req.auth.userId);
+  //     console.log("utilisateur qui a créer la sauce");
+  //     console.log(tweet.userId);
+  //     if (req.auth.userId === tweet.userId) {
+  //       const filename = tweet.imageUrl.split("/images/")[1];
+  //       fs.unlink(`images/${filename}`, () => {
+  //         Tweet.deleteOne({ _id: req.params.id })
+  //           .then(() => res.status(200).json({ message: "tweet supprimé !" }))
+  //           .catch((error) => res.status(400).json({ error }));
+  //       });
+  //     } else {
+  //       res.status(401).json("Not authorized");
+  //     }
+  //   })
+  //   .catch((error) => res.status(500).json({ error }));
 };
 
 exports.getOneThing = (req, res, next) => {
