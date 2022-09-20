@@ -6,7 +6,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { deletefetch, dislikefetch, likefetch } from "../script/Allfetch";
 
-const Post = ({ tweet, forceUpdate, reducerValue }) => {
+const Post = ({ tweet, forceUpdate, reducerValue, setOnlyLike }) => {
   const functionLike = (e) => {
     likefetch(tweet._id, forceUpdate);
   };
@@ -35,6 +35,9 @@ const Post = ({ tweet, forceUpdate, reducerValue }) => {
     }
     if (tweet.userId !== userId) {
       setIsthecreator(false);
+    }
+    if (tweet.usersLiked.includes(userId)) {
+      setOnlyLike([tweet]);
     }
   }, [tweet.usersLiked, tweet.userId, userId, reducerValue]);
 

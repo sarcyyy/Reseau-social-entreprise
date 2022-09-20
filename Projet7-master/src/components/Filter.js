@@ -14,6 +14,9 @@ const Filter = ({ handleclick, rangevalue, tweet, maplike, setMaplike }) => {
   const maplikeedit = (e) => {
     setMaplike(true);
   };
+  const mapdislikeedit = (e) => {
+    setMaplike(false);
+  };
 
   return (
     <div>
@@ -29,10 +32,15 @@ const Filter = ({ handleclick, rangevalue, tweet, maplike, setMaplike }) => {
           min={5}
           max={15}
         />
-
-        <Button variant="contained" size="small" onClick={maplikeedit}>
-          Post liké
-        </Button>
+        {maplike ? (
+          <Button variant="contained" size="small" onClick={mapdislikeedit}>
+            Accueil
+          </Button>
+        ) : (
+          <Button variant="contained" size="small" onClick={maplikeedit}>
+            Post liké
+          </Button>
+        )}
       </div>
     </div>
   );
