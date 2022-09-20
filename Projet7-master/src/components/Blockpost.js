@@ -7,9 +7,7 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
   const [data, setData] = useState([]);
   const [rangevalue, setRangevalue] = useState(5);
   const [maplike, setMaplike] = useState(false);
-
   const [onlylike, setOnlyLike] = useState([]);
-  const userId = JSON.parse(localStorage.getItem("token")).userId;
 
   useEffect(() => {
     const testtoken = localStorage.getItem("token");
@@ -41,15 +39,16 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
     <div>
       <div className="blockpost">
         {maplike
-          ? onlylike.map((tweet, index) => (
-              <Post
-                key={index}
-                tweet={tweet}
-                forceUpdate={forceUpdate}
-                reducerValue={reducerValue}
-                setOnlyLike={setOnlyLike}
-              />
-            ))
+          ? // ? onlylike.map((tweet, index) => (
+            //     <Post
+            //       key={index}
+            //       tweet={tweet}
+            //       forceUpdate={forceUpdate}
+            //       reducerValue={reducerValue}
+            //       setOnlyLike={setOnlyLike}
+            //     />
+            //   ))
+            console.log(onlylike)
           : data
               .slice(0, rangevalue)
               .map((tweet, index) => (

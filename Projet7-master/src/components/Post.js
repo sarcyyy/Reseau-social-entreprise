@@ -37,9 +37,9 @@ const Post = ({ tweet, forceUpdate, reducerValue, setOnlyLike }) => {
       setIsthecreator(false);
     }
     if (tweet.usersLiked.includes(userId)) {
-      setOnlyLike([tweet]);
+      setOnlyLike((oldtweet) => [...oldtweet, tweet]);
     }
-  }, [tweet.usersLiked, tweet.userId, userId, reducerValue]);
+  }, [reducerValue]);
 
   return (
     <div className="poststyle">
