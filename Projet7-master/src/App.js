@@ -7,7 +7,7 @@ import Modify from "./pages/Modify";
 import { UserContext } from "./script/UserContext";
 
 const App = () => {
-  const [admin, setAdmin] = useState(false);
+  const [admin, setAdmin] = useState(null);
   // const adminvalue = useMemo(() => ({ admin, setAdmin }), [admin, setAdmin]);
   return (
     <UserContext.Provider value={{ admin, setAdmin }}>
