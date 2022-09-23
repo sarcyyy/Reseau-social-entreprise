@@ -11,7 +11,7 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
   const [data, setData] = useState([]);
   const [rangevalue, setRangevalue] = useState(5);
   const [maplike, setMaplike] = useState(false);
-  const [onlylike, setOnlyLike] = useState([]);
+
   // const { admin, setAdmin } = useContext(UserContext);
 
   useEffect(() => {
@@ -55,7 +55,6 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
                     tweet={tweet}
                     forceUpdate={forceUpdate}
                     reducerValue={reducerValue}
-                    setOnlyLike={setOnlyLike}
                   />
                 );
               } else {
@@ -90,7 +89,6 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
                   tweet={tweet}
                   forceUpdate={forceUpdate}
                   reducerValue={reducerValue}
-                  setOnlyLike={setOnlyLike}
                 />
               ))}
       </div>
