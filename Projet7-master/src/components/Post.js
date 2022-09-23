@@ -23,6 +23,7 @@ const Post = ({ tweet, forceUpdate, reducerValue, setOnlyLike }) => {
   const [likeornot, setLikeornot] = useState(false);
   const [isthecreator, setIsthecreator] = useState(false);
   const userId = JSON.parse(localStorage.getItem("token")).userId;
+  // userId a généraliser Timeline
 
   useEffect(() => {
     if (tweet.usersLiked.includes(userId)) {
@@ -39,7 +40,7 @@ const Post = ({ tweet, forceUpdate, reducerValue, setOnlyLike }) => {
     if (tweet.usersLiked.includes(userId)) {
       setOnlyLike((oldtweet) => [...oldtweet, tweet]);
     }
-  }, [reducerValue]);
+  }, [setOnlyLike, tweet, userId]);
 
   return (
     <div className="poststyle">

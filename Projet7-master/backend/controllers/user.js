@@ -22,6 +22,7 @@ exports.signup = (req, res, next) => {
 exports.login = (req, res, next) => {
   User.findOne({ email: req.body.email })
     .then((user) => {
+      console.log(user);
       if (!user) {
         return res.status(401).json({ error: "Utilisateur non trouvé !" });
       }
@@ -37,6 +38,7 @@ exports.login = (req, res, next) => {
               expiresIn: "500 days",
             }),
             name: user.name, // verifier que j'ai bien mis user.name
+            isadmin: user.admin,
           });
         })
         .catch((error) => res.status(500).json({ error }));

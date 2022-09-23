@@ -6,6 +6,7 @@ import Tweet from "../components/Tweet";
 
 const TimeLine = () => {
   const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
+
   return (
     <div>
       <Profilepic />

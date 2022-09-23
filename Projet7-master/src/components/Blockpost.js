@@ -3,19 +3,27 @@ import Post from "./Post";
 import { useEffect, useState } from "react";
 import islogged from "../script/Islogged";
 import Filter from "./Filter";
+// import { UserContext } from "../script/UserContext";
+// import { useContext } from "react";
+
 const Blockpost = ({ forceUpdate, reducerValue }) => {
+  const [userId, setUserId] = useState();
   const [data, setData] = useState([]);
   const [rangevalue, setRangevalue] = useState(5);
   const [maplike, setMaplike] = useState(false);
   const [onlylike, setOnlyLike] = useState([]);
+  // const { admin, setAdmin } = useContext(UserContext);
 
   useEffect(() => {
+    setUserId(JSON.parse(localStorage.getItem("token")).userId);
     const testtoken = localStorage.getItem("token");
 
     if (islogged(testtoken) === false) {
       window.location = "http://localhost:7200/auth/login";
     }
     const verifytoken = JSON.parse(localStorage.getItem("token")).token;
+
+    // userId a généraliser Timeline
     const token = verifytoken;
     fetch("http://localhost:3000/api/accueil", {
       headers: {
@@ -39,8 +47,22 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
     <div>
       <div className="blockpost">
         {maplike
-          ? // ? onlylike.map((tweet, index) => (
-            //     <Post
+          ? data.map((tweet, index) => {
+              if (tweet.usersLiked.includes(userId)) {
+                return (
+                  <Post
+                    key={index}
+                    tweet={tweet}
+                    forceUpdate={forceUpdate}
+                    reducerValue={reducerValue}
+                    setOnlyLike={setOnlyLike}
+                  />
+                );
+              } else {
+                return "";
+              }
+            }) // ? // ? onlylike.map((tweet, index) => (
+          : //     <Post
             //       key={index}
             //       tweet={tweet}
             //       forceUpdate={forceUpdate}
@@ -48,8 +70,19 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
             //       setOnlyLike={setOnlyLike}
             //     />
             //   ))
-            console.log(onlylike)
-          : data
+            // onlylike.map((element, index) => {
+            //   console.log("hello");
+            //   return (
+            //     <Post
+            //       key={index}
+            //       tweet={element}
+            //       forceUpdate={forceUpdate}
+            //       reducerValue={reducerValue}
+            //       setOnlyLike={setOnlyLike}
+            //     />
+            //   );
+            // })
+            data
               .slice(0, rangevalue)
               .map((tweet, index) => (
                 <Post
