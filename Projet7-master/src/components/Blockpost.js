@@ -13,16 +13,15 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
   const [maplike, setMaplike] = useState(false);
   const [admin, setAdmin] = useState(false);
   const { setUser } = useContext(UserContext);
-
+  const [verifytoken, setVerifytoken] = useState(
+    JSON.parse(localStorage.getItem("token")).token
+  );
   useEffect(() => {
-    const testtoken = localStorage.getItem("token");
+    // const testtoken = localStorage.getItem("token");
 
-    if (islogged(testtoken) === false) {
-      window.location = "http://localhost:7200/auth/login";
-    }
-    const verifytoken = JSON.parse(localStorage.getItem("token")).token;
-
-    // userId a généraliser Timeline
+    // if (islogged(testtoken) === false) {
+    //   window.location = "http://localhost:7200/auth/login";
+    // }
 
     fetch("http://localhost:3000/api/accueil", {
       headers: {
