@@ -58,7 +58,3 @@ export function createfetch(file, forceUpdate) {
     forceUpdate();
   });
 }
-
-export function modifyfetch(tweetid, file, forceUpdate) {
-  // comment mettre le setIsmodifydone ?
-}

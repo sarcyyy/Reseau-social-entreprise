@@ -3,12 +3,11 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import islogged from "../script/Islogged";
 import { Button } from "@mui/material";
-import { useContext } from "react";
-import { UserContext } from "../script/UserContext";
+
 const Buttonconnect = () => {
   const [Islogtrue, setIslogtrue] = useState(false);
   const testtoken = localStorage.getItem("token");
-  const { admin, setAdmin } = useContext(UserContext);
+
   const fetchconnect = (e) => {
     let verifieremail = document.getElementById("verifyemail");
     let verifierpassword = document.getElementById("verifypassword");
@@ -26,10 +25,6 @@ const Buttonconnect = () => {
     })
       .then((res) => res.json())
       .then((rep) => {
-        if (rep.isadmin === "true") {
-          setAdmin(true);
-        }
-
         if (rep.token === undefined) {
           alert("mauvaise combinaison");
         } else {

@@ -45,3 +45,9 @@ exports.login = (req, res, next) => {
     })
     .catch((error) => res.status(500).json({ error }));
 };
+
+exports.validity = (req, res, next) => {
+  User.findOne({ _id: req.auth.userId })
+    .then((tweet) => res.status(200).json(tweet))
+    .catch((error) => res.status(400).json({ error }));
+};

@@ -3,16 +3,16 @@ import Post from "./Post";
 import { useEffect, useState } from "react";
 import islogged from "../script/Islogged";
 import Filter from "./Filter";
-// import { UserContext } from "../script/UserContext";
-// import { useContext } from "react";
+
+import { UserContext } from "../script/UserContext";
+import { useContext } from "react";
 
 const Blockpost = ({ forceUpdate, reducerValue }) => {
   const [userId, setUserId] = useState();
   const [data, setData] = useState([]);
   const [rangevalue, setRangevalue] = useState(5);
   const [maplike, setMaplike] = useState(false);
-
-  // const { admin, setAdmin } = useContext(UserContext);
+  const { admin, setAdmin } = useContext(UserContext);
 
   useEffect(() => {
     setUserId(JSON.parse(localStorage.getItem("token")).userId);
@@ -24,12 +24,12 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
     const verifytoken = JSON.parse(localStorage.getItem("token")).token;
 
     // userId a généraliser Timeline
-    const token = verifytoken;
+
     fetch("http://localhost:3000/api/accueil", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
+        Authorization: "Bearer " + verifytoken,
       },
       method: "GET",
     })
@@ -37,7 +37,18 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
       .then((rep) => {
         setData(rep);
       });
-  }, [reducerValue, maplike]);
+    fetch("http://localhost:3000/api/auth/validity", {
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + verifytoken,
+      },
+      method: "POST",
+    })
+      .then((rep) => rep.json())
+      .then((user) => {
+        setAdmin(user);
+      });
+  }, [reducerValue, maplike, setAdmin]);
 
   const handleclick = (e) => {
     setRangevalue(e.target.value);
@@ -60,28 +71,8 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
               } else {
                 return "";
               }
-            }) // ? // ? onlylike.map((tweet, index) => (
-          : //     <Post
-            //       key={index}
-            //       tweet={tweet}
-            //       forceUpdate={forceUpdate}
-            //       reducerValue={reducerValue}
-            //       setOnlyLike={setOnlyLike}
-            //     />
-            //   ))
-            // onlylike.map((element, index) => {
-            //   console.log("hello");
-            //   return (
-            //     <Post
-            //       key={index}
-            //       tweet={element}
-            //       forceUpdate={forceUpdate}
-            //       reducerValue={reducerValue}
-            //       setOnlyLike={setOnlyLike}
-            //     />
-            //   );
-            // })
-            data
+            })
+          : data
               .slice(0, rangevalue)
               .map((tweet, index) => (
                 <Post
