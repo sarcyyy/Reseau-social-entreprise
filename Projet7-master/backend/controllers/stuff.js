@@ -23,11 +23,47 @@ exports.createThing = (req, res, next) => {
 };
 
 exports.modifyThing = (req, res, next) => {
+  // .then((tweet) => {
+  //   if (
+  //     tweet.userId !== req.auth.userId ||
+  //     req.body.description === "" ||
+  //     req.file === undefined
+  //   ) {
+  //     if (req.file === undefined) {
+  //       res.status(401).json({ message: "Not authorized" });
+  //     } else {
+  //       const filename = req.file.filename;
+  //       fs.unlink(`images/${filename}`, () => {});
+  //       res.status(401).json({ message: "Not authorized" });
+  //     }
+  //   } else {
+  //     const tweetModifie = req.file
+  //       ? {
+  //           ...req.body,
+  //           imageUrl: `${req.protocol}://${req.get("host")}/images/${
+  //             req.file.filename
+  //           }`,
+  //         }
+  //       : { ...req.body };
+  //     delete tweetModifie._userId;
+  //     Tweet.findOne({ _id: req.params.id })
+  //       .then((tweet) => {
+  //         const filename = tweet.imageUrl.split("/images/")[1];
+  //         fs.unlink(`images/${filename}`, () => {});
+  //         Tweet.updateOne(
+  //           { _id: req.params.id },
+  //           { ...tweetModifie, _id: req.params.id }
+  //         )
+  //           .then(() => res.status(200).json({ message: "tweet modifié!" }))
+  //           .catch((error) => res.status(401).json({ error }));
+  //       })
+  //       .catch((error) => {
+  //         res.status(400).json({ error });
+  //       });
+  //   }
+  // });
+
   Tweet.findOne({ _id: req.params.id }).then((tweet) => {
-    console.log(req.body);
-    // req.file?.filename
-    console.log("reqfile", req.file);
-    // Comment faire si pas de fichier?
     if (
       tweet.userId !== req.auth.userId ||
       req.body.description === "" ||
@@ -74,11 +110,6 @@ exports.deleteThing = (req, res, next) => {
       Tweet.findOne({ _id: req.params.id })
 
         .then((tweet) => {
-          console.log(admin);
-          console.log("utilisateur qui demande la supression");
-          console.log(req.auth.userId);
-          console.log("utilisateur qui a créer la sauce");
-          console.log(tweet.userId);
           if (req.auth.userId === tweet.userId || admin === "true") {
             const filename = tweet.imageUrl.split("/images/")[1];
             fs.unlink(`images/${filename}`, () => {
@@ -97,10 +128,6 @@ exports.deleteThing = (req, res, next) => {
       Tweet.findOne({ _id: req.params.id })
 
         .then((tweet) => {
-          console.log("utilisateur qui demande la supression");
-          console.log(req.auth.userId);
-          console.log("utilisateur qui a créer la sauce");
-          console.log(tweet.userId);
           if (req.auth.userId === tweet.userId) {
             const filename = tweet.imageUrl.split("/images/")[1];
             fs.unlink(`images/${filename}`, () => {
@@ -117,25 +144,6 @@ exports.deleteThing = (req, res, next) => {
         .catch((error) => res.status(500).json({ error }));
     }
   });
-  // Tweet.findOne({ _id: req.params.id })
-
-  //   .then((tweet) => {
-  //     console.log("utilisateur qui demande la supression");
-  //     console.log(req.auth.userId);
-  //     console.log("utilisateur qui a créer la sauce");
-  //     console.log(tweet.userId);
-  //     if (req.auth.userId === tweet.userId) {
-  //       const filename = tweet.imageUrl.split("/images/")[1];
-  //       fs.unlink(`images/${filename}`, () => {
-  //         Tweet.deleteOne({ _id: req.params.id })
-  //           .then(() => res.status(200).json({ message: "tweet supprimé !" }))
-  //           .catch((error) => res.status(400).json({ error }));
-  //       });
-  //     } else {
-  //       res.status(401).json("Not authorized");
-  //     }
-  //   })
-  //   .catch((error) => res.status(500).json({ error }));
 };
 
 exports.getOneThing = (req, res, next) => {
@@ -145,7 +153,6 @@ exports.getOneThing = (req, res, next) => {
 };
 
 exports.getAllStuff = (req, res, next) => {
-  // ajouter sort
   Tweet.find()
     .sort({ _id: -1 })
     .then((tweet) => res.status(200).json(tweet))
