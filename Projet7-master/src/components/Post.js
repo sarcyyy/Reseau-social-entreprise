@@ -21,7 +21,7 @@ const Post = ({ tweet, forceUpdate, reducerValue }) => {
     const id = tweet._id;
     localStorage.setItem("id", JSON.stringify(id));
   };
-  const [likeornot, setLikeornot] = useState(false);
+  const [likeornot, setLikeornot] = useState(null);
   const [isthecreator, setIsthecreator] = useState(false);
   const { admin } = useContext(UserContext);
   const userId = JSON.parse(localStorage.getItem("token")).userId;
