@@ -4,15 +4,15 @@ import { useEffect, useState } from "react";
 // import islogged from "../script/Islogged";
 import Filter from "./Filter";
 
-import { UserContext } from "../script/UserContext";
-import { useContext } from "react";
+// import { UserContext } from "../script/UserContext";
+// import { useContext } from "react";
 
 const Blockpost = ({ forceUpdate, reducerValue }) => {
   const [userId, setUserId] = useState();
   const [data, setData] = useState([]);
   const [rangevalue, setRangevalue] = useState(5);
   const [maplike, setMaplike] = useState(false);
-  const { admin, setAdmin } = useContext(UserContext);
+  // const { admin, setAdmin } = useContext(UserContext);
 
   useEffect(() => {
     setUserId(JSON.parse(localStorage.getItem("token")).userId);
@@ -37,20 +37,20 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
       .then((rep) => {
         setData(rep);
       });
-    fetch("http://localhost:3000/api/auth/validity", {
-      headers: {
-        Accept: "application/json",
-        Authorization: "Bearer " + verifytoken,
-      },
-      method: "POST",
-    })
-      .then((rep) => rep.json())
-      .then((user) => {
-        if (user.admin !== true) {
-          setAdmin(user.admin);
-        }
-      });
-  }, [reducerValue, maplike, setAdmin]);
+    // fetch("http://localhost:3000/api/auth/validity", {
+    //   headers: {
+    //     Accept: "application/json",
+    //     Authorization: "Bearer " + verifytoken,
+    //   },
+    //   method: "POST",
+    // })
+    //   .then((rep) => rep.json())
+    //   .then((user) => {
+    //     // if (user.admin !== true) {
+    //     //   setAdmin(user.admin);
+    //     }
+    //   });
+  }, [reducerValue, maplike]);
 
   const handleclick = (e) => {
     setRangevalue(e.target.value);
@@ -85,7 +85,7 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
                 />
               ))}
       </div>
-      <button onClick={console.log(admin)}>cliquer</button>{" "}
+
       <Filter
         handleclick={handleclick}
         rangevalue={rangevalue}
