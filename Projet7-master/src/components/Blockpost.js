@@ -5,7 +5,7 @@ import islogged from "../script/Islogged";
 import Filter from "./Filter";
 import { UserContext } from "../script/UserContext";
 import { useContext } from "react";
-
+import userdata from "../script/Userdata";
 const Blockpost = ({ forceUpdate, reducerValue }) => {
   const [userId, setUserId] = useState();
   const [data, setData] = useState([]);
@@ -37,19 +37,25 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
       .then((rep) => {
         setData(rep);
       });
-    fetch("http://localhost:3000/api/auth/validity", {
-      headers: {
-        Accept: "application/json",
-        Authorization: "Bearer " + token,
-      },
-      method: "POST",
-    })
-      .then((rep) => rep.json())
-      .then((user) => {
-        if (user.admin !== true) {
-          setAdmin(user.admin);
-        }
-      });
+    userdata(token).then((user) => {
+      if (user.admin !== true) {
+        setAdmin(user.admin);
+      }
+    });
+
+    // fetch("http://localhost:3000/api/auth/validity", {
+    //   headers: {
+    //     Accept: "application/json",
+    //     Authorization: "Bearer " + token,
+    //   },
+    //   method: "POST",
+    // })
+    //   .then((rep) => rep.json())
+    //   .then((user) => {
+    //     if (user.admin !== true) {
+    //       setAdmin(user.admin);
+    //     }
+    //   });
   }, [reducerValue, maplike, setAdmin]);
 
   const handleclick = (e) => {
