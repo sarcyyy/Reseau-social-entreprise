@@ -21,7 +21,9 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
   useEffect(() => {
     verifyvalidity(verifytoken).then((rep) => {
       if (rep.ok !== true) {
-        return "";
+        localStorage.removeItem("token");
+        localStorage.removeItem("id");
+        window.location = "http://localhost:7200/auth/login";
       }
     });
 
