@@ -37,7 +37,20 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
       .then((rep) => {
         setData(rep);
       });
-  }, [reducerValue, maplike]);
+    fetch("http://localhost:3000/api/auth/validity", {
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + token,
+      },
+      method: "POST",
+    })
+      .then((rep) => rep.json())
+      .then((user) => {
+        if (user.admin !== true) {
+          setAdmin(user.admin);
+        }
+      });
+  }, [reducerValue, maplike, setAdmin]);
 
   const handleclick = (e) => {
     setRangevalue(e.target.value);
@@ -79,6 +92,7 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
         maplike={maplike}
         setMaplike={setMaplike}
       />
+      <button onClick={console.log(admin)}> click me</button>
     </div>
   );
 };
