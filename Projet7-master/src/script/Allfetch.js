@@ -26,6 +26,7 @@ export function likefetch(tweetid, forceUpdate) {
     body: JSON.stringify(like),
   }).then((rep) => {
     console.log(rep);
+
     forceUpdate();
   });
 }
@@ -43,6 +44,7 @@ export function dislikefetch(tweetid, forceUpdate) {
     body: JSON.stringify(dislike),
   }).then((rep) => {
     console.log(rep);
+
     forceUpdate();
   });
 }

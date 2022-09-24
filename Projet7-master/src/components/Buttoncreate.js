@@ -2,9 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { Button } from "@mui/material";
-import islogged from "../script/Islogged";
+// import islogged from "../script/Islogged";
 const Buttoncreate = () => {
-  const testtoken = localStorage.getItem("token");
+  // const testtoken = localStorage.getItem("token");
   const fetchcreate = (e) => {
     let emailcreer = document.getElementById("createemail");
     let passworldcreer = document.getElementById("createpassword");
@@ -35,9 +35,9 @@ const Buttoncreate = () => {
       }
     });
   };
-  if (islogged(testtoken) === true) {
-    window.location = "http://localhost:7200/accueil";
-  }
+  // if (islogged(testtoken) === true) {
+  //   window.location = "http://localhost:7200/accueil";
+  // }
 
   const [Islogtrue, setIslogtrue] = useState(false);
   return (

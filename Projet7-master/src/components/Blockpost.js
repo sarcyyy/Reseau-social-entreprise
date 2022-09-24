@@ -1,7 +1,7 @@
 import React from "react";
 import Post from "./Post";
 import { useEffect, useState } from "react";
-import islogged from "../script/Islogged";
+// import islogged from "../script/Islogged";
 import Filter from "./Filter";
 
 import { UserContext } from "../script/UserContext";
@@ -16,11 +16,11 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
 
   useEffect(() => {
     setUserId(JSON.parse(localStorage.getItem("token")).userId);
-    const testtoken = localStorage.getItem("token");
+    // const testtoken = localStorage.getItem("token");
 
-    if (islogged(testtoken) === false) {
-      window.location = "http://localhost:7200/auth/login";
-    }
+    // if (islogged(testtoken) === false) {
+    //   window.location = "http://localhost:7200/auth/login";
+    // }
     const verifytoken = JSON.parse(localStorage.getItem("token")).token;
 
     // userId a généraliser Timeline
@@ -46,7 +46,9 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
     })
       .then((rep) => rep.json())
       .then((user) => {
-        setAdmin(user);
+        if (user.admin !== true) {
+          setAdmin(user.admin);
+        }
       });
   }, [reducerValue, maplike, setAdmin]);
 
@@ -83,6 +85,7 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
                 />
               ))}
       </div>
+      <button onClick={console.log(admin)}>cliquer</button>{" "}
       <Filter
         handleclick={handleclick}
         rangevalue={rangevalue}
