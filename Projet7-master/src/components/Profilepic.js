@@ -1,13 +1,9 @@
 import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-
+import { UserContext } from "../script/UserContext";
+import { useContext } from "react";
 const Profilepic = () => {
-  const [nompersonne, setNompersonne] = useState("");
-  useEffect(() => {
-    setNompersonne(JSON.parse(localStorage.getItem("token")).name);
-    console.log(nompersonne);
-  }, [nompersonne]);
+  const { user } = useContext(UserContext);
+
   return (
     <div>
       <div className="avatar">
@@ -17,7 +13,7 @@ const Profilepic = () => {
           className="picsize"
           onClick={() => {}}
         />
-        <p>{nompersonne}</p>
+        <p>{user.name}</p>
       </div>
     </div>
   );

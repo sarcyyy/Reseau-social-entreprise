@@ -6,12 +6,12 @@ import Tweet from "../components/Tweet";
 import { UserContext } from "../script/UserContext";
 const TimeLine = () => {
   const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
-  const [admin, setAdmin] = useState(null);
+  const [user, setUser] = useState("");
   return (
     <div>
-      <Profilepic />
-      <Disconnectorconnect />
-      <UserContext.Provider value={{ admin, setAdmin }}>
+      <UserContext.Provider value={{ user, setUser }}>
+        <Profilepic />
+        <Disconnectorconnect />
         <Tweet forceUpdate={forceUpdate} reducerValue={reducerValue} />
         <Blockpost forceUpdate={forceUpdate} reducerValue={reducerValue} />
       </UserContext.Provider>
