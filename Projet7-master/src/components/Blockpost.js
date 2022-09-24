@@ -3,8 +3,8 @@ import Post from "./Post";
 import { useEffect, useState } from "react";
 import islogged from "../script/Islogged";
 import Filter from "./Filter";
-// import { UserContext } from "../script/UserContext";
-// import { useContext } from "react";
+import { UserContext } from "../script/UserContext";
+import { useContext } from "react";
 
 const Blockpost = ({ forceUpdate, reducerValue }) => {
   const [userId, setUserId] = useState();
@@ -12,7 +12,7 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
   const [rangevalue, setRangevalue] = useState(5);
   const [maplike, setMaplike] = useState(false);
 
-  // const { admin, setAdmin } = useContext(UserContext);
+  const { admin, setAdmin } = useContext(UserContext);
 
   useEffect(() => {
     setUserId(JSON.parse(localStorage.getItem("token")).userId);
