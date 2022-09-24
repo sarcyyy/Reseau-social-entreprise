@@ -11,11 +11,13 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
   const [data, setData] = useState([]);
   const [rangevalue, setRangevalue] = useState(5);
   const [maplike, setMaplike] = useState(false);
-  const [admin, setAdmin] = useState(false);
-  const { setUser } = useContext(UserContext);
+
+  const { admin, setAdmin } = useContext(UserContext);
 
   useEffect(() => {
+    setUserId(JSON.parse(localStorage.getItem("token")).userId);
     const testtoken = localStorage.getItem("token");
+
     if (islogged(testtoken) === false) {
       window.location = "http://localhost:7200/auth/login";
     }
@@ -36,14 +38,25 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
         setData(rep);
       });
     userdata(verifytoken).then((user) => {
-      setUser(user);
       if (user.admin !== true) {
         setAdmin(user.admin);
       }
-      console.log("user", user);
-      setUserId(user._id);
     });
-  }, [reducerValue, maplike, setUser]);
+
+    // fetch("http://localhost:3000/api/auth/validity", {
+    //   headers: {
+    //     Accept: "application/json",
+    //     Authorization: "Bearer " + token,
+    //   },
+    //   method: "POST",
+    // })
+    //   .then((rep) => rep.json())
+    //   .then((user) => {
+    //     if (user.admin !== true) {
+    //       setAdmin(user.admin);
+    //     }
+    //   });
+  }, [reducerValue, maplike, setAdmin]);
 
   const handleclick = (e) => {
     setRangevalue(e.target.value);
@@ -61,7 +74,6 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
                     tweet={tweet}
                     forceUpdate={forceUpdate}
                     reducerValue={reducerValue}
-                    admin={admin}
                   />
                 );
               } else {
@@ -76,7 +88,6 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
                   tweet={tweet}
                   forceUpdate={forceUpdate}
                   reducerValue={reducerValue}
-                  admin={admin}
                 />
               ))}
       </div>
@@ -87,6 +98,7 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
         maplike={maplike}
         setMaplike={setMaplike}
       />
+      <button onClick={console.log(admin)}> click me</button>
     </div>
   );
 };

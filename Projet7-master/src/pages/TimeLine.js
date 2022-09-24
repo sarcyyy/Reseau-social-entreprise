@@ -4,16 +4,14 @@ import Disconnectorconnect from "../components/Disconnectorconnect";
 import Profilepic from "../components/Profilepic";
 import Tweet from "../components/Tweet";
 import { UserContext } from "../script/UserContext";
-
 const TimeLine = () => {
   const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
-  const [user, setUser] = useState(null);
-
+  const [admin, setAdmin] = useState(null);
   return (
     <div>
-      <UserContext.Provider value={{ user, setUser }}>
-        <Profilepic />
-        <Disconnectorconnect />
+      <Profilepic />
+      <Disconnectorconnect />
+      <UserContext.Provider value={{ admin, setAdmin }}>
         <Tweet forceUpdate={forceUpdate} reducerValue={reducerValue} />
         <Blockpost forceUpdate={forceUpdate} reducerValue={reducerValue} />
       </UserContext.Provider>
