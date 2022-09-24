@@ -1,10 +1,21 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-
+// import { UserContext } from "../script/UserContext";
+// import { useContext } from "react";
+// import userdata from "../script/Userdata";
 const Profilepic = () => {
+  // const { user, setUser } = useContext(UserContext);
   const [nompersonne, setNompersonne] = useState("");
   useEffect(() => {
+    // const token = JSON.parse(localStorage.getItem("token")).token;
+    //   userdata(token).then((user) => {
+    //     setUser(user);
+    //     if (user.admin !== true) {
+    //       setUser(user);
+    //     }
+    //   });
+    // }, []);
     setNompersonne(JSON.parse(localStorage.getItem("token")).name);
     console.log(nompersonne);
   }, [nompersonne]);
