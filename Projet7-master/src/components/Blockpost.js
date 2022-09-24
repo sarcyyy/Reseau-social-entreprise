@@ -1,7 +1,7 @@
 import React from "react";
 import Post from "./Post";
 import { useEffect, useState } from "react";
-import islogged from "../script/Islogged";
+// import islogged from "../script/Islogged";
 import Filter from "./Filter";
 import { UserContext } from "../script/UserContext";
 import { useContext } from "react";
@@ -43,7 +43,7 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
       console.log("user", user);
       setUserId(user._id);
     });
-  }, [reducerValue, maplike, setUser]);
+  }, [reducerValue, maplike, setUser, verifytoken]);
 
   const handleclick = (e) => {
     setRangevalue(e.target.value);
