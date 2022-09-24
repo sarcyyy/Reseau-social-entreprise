@@ -5,7 +5,8 @@ import { Button } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { deletefetch, dislikefetch, likefetch } from "../script/Allfetch";
-
+import { UserContext } from "../script/UserContext";
+import { useContext } from "react";
 const Post = ({ tweet, forceUpdate }) => {
   const functionLike = (e) => {
     likefetch(tweet._id, forceUpdate);
@@ -23,18 +24,20 @@ const Post = ({ tweet, forceUpdate }) => {
   const [likeornot, setLikeornot] = useState(false);
   const [isthecreator, setIsthecreator] = useState(false);
   const userId = JSON.parse(localStorage.getItem("token")).userId;
+  const { admin, setAdmin } = useContext(UserContext);
   // userId a généraliser Timeline
 
   useEffect(() => {
+    console.log("adminpost", admin);
     if (tweet.usersLiked.includes(userId)) {
       setLikeornot(true);
     } else {
       setLikeornot(false);
     }
-    if (tweet.userId === userId) {
+    if (tweet.userId === userId || admin === "true") {
       setIsthecreator(true);
     }
-    if (tweet.userId !== userId) {
+    if ((tweet.userId !== userId) & (admin !== "true")) {
       setIsthecreator(false);
     }
   }, [tweet, userId]);
