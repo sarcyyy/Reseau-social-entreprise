@@ -4,9 +4,11 @@ import Disconnectorconnect from "../components/Disconnectorconnect";
 import Profilepic from "../components/Profilepic";
 import Tweet from "../components/Tweet";
 import { UserContext } from "../script/UserContext";
+
 const TimeLine = () => {
   const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
+
   return (
     <div>
       <UserContext.Provider value={{ user, setUser }}>

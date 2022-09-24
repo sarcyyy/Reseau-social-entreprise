@@ -16,7 +16,6 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
 
   useEffect(() => {
     const testtoken = localStorage.getItem("token");
-
     if (islogged(testtoken) === false) {
       window.location = "http://localhost:7200/auth/login";
     }
