@@ -72,27 +72,3 @@ export function verifyvalidity(token) {
     return rep;
   });
 }
-
-export function islogged() {
-  if (token === null || token === undefined) {
-    return fetch("http://localhost:3000/api/auth/validity", {
-      headers: {
-        Accept: "application/json",
-        Authorization: "Bearer ",
-      },
-      method: "POST",
-    }).then((rep) => {
-      return rep;
-    });
-  } else {
-    return fetch("http://localhost:3000/api/auth/validity", {
-      headers: {
-        Accept: "application/json",
-        Authorization: "Bearer " + token.token,
-      },
-      method: "POST",
-    }).then((rep) => {
-      return rep;
-    });
-  }
-}
