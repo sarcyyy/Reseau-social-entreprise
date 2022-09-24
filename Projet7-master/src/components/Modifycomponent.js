@@ -2,9 +2,13 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
+// import { UserContext } from "../script/UserContext";
+// import { useContext } from "react";
+// import userdata from "../script/Userdata";
 const Modifycomponent = () => {
   const [tweet, setTweet] = useState("");
   const [ismodifydone, setIsmodifydone] = useState(false);
+  // const { user, setUser } = useContext(UserContext);
   // const [newfile, setNewfile] = useState();
   const [newdescri, setNewdescri] = useState();
   useEffect(() => {

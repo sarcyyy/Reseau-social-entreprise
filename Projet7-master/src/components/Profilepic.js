@@ -1,9 +1,24 @@
 import React from "react";
-import { UserContext } from "../script/UserContext";
-import { useContext } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+// import { UserContext } from "../script/UserContext";
+// import { useContext } from "react";
+// import userdata from "../script/Userdata";
 const Profilepic = () => {
-  const { user } = useContext(UserContext);
-
+  // const { user, setUser } = useContext(UserContext);
+  const [nompersonne, setNompersonne] = useState("");
+  useEffect(() => {
+    const verifytoken = JSON.parse(localStorage.getItem("token")).token;
+    //   userdata(verifytoken).then((user) => {
+    //     setUser(user);
+    //     if (user.admin !== true) {
+    //       setUser(user);
+    //     }
+    //   });
+    // }, []);
+    setNompersonne(JSON.parse(localStorage.getItem("token")).name);
+    console.log(nompersonne);
+  }, [nompersonne]);
   return (
     <div>
       <div className="avatar">
@@ -13,7 +28,7 @@ const Profilepic = () => {
           className="picsize"
           onClick={() => {}}
         />
-        <p>{user.name}</p>
+        <p>{nompersonne}</p>
       </div>
     </div>
   );

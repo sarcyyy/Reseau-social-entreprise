@@ -12,7 +12,7 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
   const [rangevalue, setRangevalue] = useState(5);
   const [maplike, setMaplike] = useState(false);
   const [admin, setAdmin] = useState(false);
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
 
   useEffect(() => {
     const testtoken = localStorage.getItem("token");
@@ -44,20 +44,6 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
       console.log("user", user);
       setUserId(user._id);
     });
-
-    // fetch("http://localhost:3000/api/auth/validity", {
-    //   headers: {
-    //     Accept: "application/json",
-    //     Authorization: "Bearer " + token,
-    //   },
-    //   method: "POST",
-    // })
-    //   .then((rep) => rep.json())
-    //   .then((user) => {
-    //     if (user.admin !== true) {
-    //       setAdmin(user.admin);
-    //     }
-    //   });
   }, [reducerValue, maplike, setUser]);
 
   const handleclick = (e) => {
