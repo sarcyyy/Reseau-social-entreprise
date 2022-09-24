@@ -5,9 +5,8 @@ import { Button } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { deletefetch, dislikefetch, likefetch } from "../script/Allfetch";
-// import { UserContext } from "../script/UserContext";
-// import { useContext } from "react";
-const Post = ({ tweet, forceUpdate, reducerValue }) => {
+
+const Post = ({ tweet, forceUpdate }) => {
   const functionLike = (e) => {
     likefetch(tweet._id, forceUpdate);
   };
@@ -23,7 +22,6 @@ const Post = ({ tweet, forceUpdate, reducerValue }) => {
   };
   const [likeornot, setLikeornot] = useState(false);
   const [isthecreator, setIsthecreator] = useState(false);
-  // const { admin } = useContext(UserContext);
   const userId = JSON.parse(localStorage.getItem("token")).userId;
   // userId a généraliser Timeline
 
@@ -39,9 +37,7 @@ const Post = ({ tweet, forceUpdate, reducerValue }) => {
     if (tweet.userId !== userId) {
       setIsthecreator(false);
     }
-    console.log("tweetid", tweet.userId);
-    console.log("userid", userId);
-  }, [tweet, userId, reducerValue]);
+  }, [tweet, userId]);
 
   return (
     <div className="poststyle">

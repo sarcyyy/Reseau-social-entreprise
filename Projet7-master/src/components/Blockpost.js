@@ -1,9 +1,8 @@
 import React from "react";
 import Post from "./Post";
 import { useEffect, useState } from "react";
-// import islogged from "../script/Islogged";
+import islogged from "../script/Islogged";
 import Filter from "./Filter";
-
 // import { UserContext } from "../script/UserContext";
 // import { useContext } from "react";
 
@@ -12,24 +11,25 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
   const [data, setData] = useState([]);
   const [rangevalue, setRangevalue] = useState(5);
   const [maplike, setMaplike] = useState(false);
+
   // const { admin, setAdmin } = useContext(UserContext);
 
   useEffect(() => {
     setUserId(JSON.parse(localStorage.getItem("token")).userId);
-    // const testtoken = localStorage.getItem("token");
+    const testtoken = localStorage.getItem("token");
 
-    // if (islogged(testtoken) === false) {
-    //   window.location = "http://localhost:7200/auth/login";
-    // }
+    if (islogged(testtoken) === false) {
+      window.location = "http://localhost:7200/auth/login";
+    }
     const verifytoken = JSON.parse(localStorage.getItem("token")).token;
 
     // userId a généraliser Timeline
-
+    const token = verifytoken;
     fetch("http://localhost:3000/api/accueil", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: "Bearer " + verifytoken,
+        Authorization: "Bearer " + token,
       },
       method: "GET",
     })
@@ -37,19 +37,6 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
       .then((rep) => {
         setData(rep);
       });
-    // fetch("http://localhost:3000/api/auth/validity", {
-    //   headers: {
-    //     Accept: "application/json",
-    //     Authorization: "Bearer " + verifytoken,
-    //   },
-    //   method: "POST",
-    // })
-    //   .then((rep) => rep.json())
-    //   .then((user) => {
-    //     // if (user.admin !== true) {
-    //     //   setAdmin(user.admin);
-    //     }
-    //   });
   }, [reducerValue, maplike]);
 
   const handleclick = (e) => {
@@ -73,8 +60,28 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
               } else {
                 return "";
               }
-            })
-          : data
+            }) // ? // ? onlylike.map((tweet, index) => (
+          : //     <Post
+            //       key={index}
+            //       tweet={tweet}
+            //       forceUpdate={forceUpdate}
+            //       reducerValue={reducerValue}
+            //       setOnlyLike={setOnlyLike}
+            //     />
+            //   ))
+            // onlylike.map((element, index) => {
+            //   console.log("hello");
+            //   return (
+            //     <Post
+            //       key={index}
+            //       tweet={element}
+            //       forceUpdate={forceUpdate}
+            //       reducerValue={reducerValue}
+            //       setOnlyLike={setOnlyLike}
+            //     />
+            //   );
+            // })
+            data
               .slice(0, rangevalue)
               .map((tweet, index) => (
                 <Post
@@ -85,7 +92,6 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
                 />
               ))}
       </div>
-
       <Filter
         handleclick={handleclick}
         rangevalue={rangevalue}
