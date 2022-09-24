@@ -43,7 +43,7 @@ const Post = ({ tweet, forceUpdate, admin }) => {
     if ((tweet.userId !== user._id) & (admin !== "true")) {
       setIsthecreator(false);
     }
-  }, [tweet, user._id]);
+  }, [tweet, user._id, admin]);
 
   return (
     <div className="poststyle">

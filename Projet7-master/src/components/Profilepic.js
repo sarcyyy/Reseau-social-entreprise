@@ -8,8 +8,8 @@ const Profilepic = () => {
   // const { user, setUser } = useContext(UserContext);
   const [nompersonne, setNompersonne] = useState("");
   useEffect(() => {
-    const verifytoken = JSON.parse(localStorage.getItem("token")).token;
-    //   userdata(verifytoken).then((user) => {
+    // const token = JSON.parse(localStorage.getItem("token")).token;
+    //   userdata(token).then((user) => {
     //     setUser(user);
     //     if (user.admin !== true) {
     //       setUser(user);
