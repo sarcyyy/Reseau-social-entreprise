@@ -31,7 +31,6 @@ const Post = ({ tweet, forceUpdate, admin }) => {
   // userId a généraliser Timeline
 
   useEffect(() => {
-    console.log("adminpost", admin);
     if (tweet.usersLiked.includes(user._id)) {
       setLikeornot(true);
     } else {
