@@ -24,12 +24,12 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
     const verifytoken = JSON.parse(localStorage.getItem("token")).token;
 
     // userId a généraliser Timeline
-    const token = verifytoken;
+
     fetch("http://localhost:3000/api/accueil", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
+        Authorization: "Bearer " + verifytoken,
       },
       method: "GET",
     })
@@ -37,7 +37,7 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
       .then((rep) => {
         setData(rep);
       });
-    userdata(token).then((user) => {
+    userdata(verifytoken).then((user) => {
       if (user.admin !== true) {
         setAdmin(user.admin);
       }
