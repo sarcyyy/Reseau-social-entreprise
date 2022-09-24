@@ -60,28 +60,8 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
               } else {
                 return "";
               }
-            }) // ? // ? onlylike.map((tweet, index) => (
-          : //     <Post
-            //       key={index}
-            //       tweet={tweet}
-            //       forceUpdate={forceUpdate}
-            //       reducerValue={reducerValue}
-            //       setOnlyLike={setOnlyLike}
-            //     />
-            //   ))
-            // onlylike.map((element, index) => {
-            //   console.log("hello");
-            //   return (
-            //     <Post
-            //       key={index}
-            //       tweet={element}
-            //       forceUpdate={forceUpdate}
-            //       reducerValue={reducerValue}
-            //       setOnlyLike={setOnlyLike}
-            //     />
-            //   );
-            // })
-            data
+            })
+          : data
               .slice(0, rangevalue)
               .map((tweet, index) => (
                 <Post
