@@ -69,6 +69,6 @@ export function verifyvalidity(token) {
     },
     method: "POST",
   }).then((rep) => {
-    return rep.json();
+    return rep;
   });
 }

@@ -6,6 +6,7 @@ import Filter from "./Filter";
 import { UserContext } from "../script/UserContext";
 import { useContext } from "react";
 import userdata from "../script/Userdata";
+import { verifyvalidity } from "../script/Allfetch";
 const Blockpost = ({ forceUpdate, reducerValue }) => {
   const [userId, setUserId] = useState();
   const [data, setData] = useState([]);
@@ -16,7 +17,14 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
   const [verifytoken, setVerifytoken] = useState(
     JSON.parse(localStorage.getItem("token")).token
   );
+
   useEffect(() => {
+    verifyvalidity(verifytoken).then((rep) => {
+      if (rep.ok !== true) {
+        return "";
+      }
+    });
+
     // const testtoken = localStorage.getItem("token");
 
     // if (islogged(testtoken) === false) {
