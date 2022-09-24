@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
-import islogged from "../script/Islogged";
+import { islogged } from "../script/Allfetch";
 import { Button } from "@mui/material";
 
 const Buttonconnect = () => {
   const [Islogtrue, setIslogtrue] = useState(false);
-  const testtoken = localStorage.getItem("token");
+  // const token = localStorage.getItem("token").token;
 
   const fetchconnect = (e) => {
     let verifieremail = document.getElementById("verifyemail");
@@ -42,9 +42,17 @@ const Buttonconnect = () => {
         }
       });
   };
-  if (islogged(testtoken) === true) {
-    window.location = "http://localhost:7200/accueil";
-  }
+  // if (islogged(testtoken) === true) {
+  //   window.location = "http://localhost:7200/accueil";
+  // }
+  useEffect(() => {
+    islogged().then((rep) => {
+      console.log(rep.ok);
+      if (rep.ok === true) {
+        window.location = "http://localhost:7200/accueil";
+      }
+    });
+  }, []);
 
   return (
     <div className="LoginAndsignup paddingT10">

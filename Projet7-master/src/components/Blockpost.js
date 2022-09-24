@@ -27,12 +27,6 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
       }
     });
 
-    // const testtoken = localStorage.getItem("token");
-
-    // if (islogged(testtoken) === false) {
-    //   window.location = "http://localhost:7200/auth/login";
-    // }
-
     fetch("http://localhost:3000/api/accueil", {
       headers: {
         Accept: "application/json",
