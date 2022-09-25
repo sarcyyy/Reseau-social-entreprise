@@ -26,9 +26,8 @@ const Post = ({ tweet, forceUpdate, admin }) => {
   };
   const [likeornot, setLikeornot] = useState(false);
   const [isthecreator, setIsthecreator] = useState(false);
-  // const userId = JSON.parse(localStorage.getItem("token")).userId;
+
   // const { admin, setAdmin } = useContext(UserContext);
-  // userId a généraliser Timeline
 
   useEffect(() => {
     if (tweet.usersLiked.includes(user._id)) {
