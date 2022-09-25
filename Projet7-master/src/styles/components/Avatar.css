@@ -13,7 +13,6 @@
 }
 
 .tweetpicsize {
-  height: 75px;
-  width: 75px;
+  width: 25%;
   object-fit: cover;
 }

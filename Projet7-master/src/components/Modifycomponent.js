@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
+import { TextField } from "@mui/material";
+import { Button } from "@mui/material";
 // import { UserContext } from "../script/UserContext";
 // import { useContext } from "react";
 // import userdata from "../script/Userdata";
@@ -58,23 +60,51 @@ const Modifycomponent = () => {
     });
   };
   return (
-    <div className="poststyle">
-      <div className="bordertop">
-        <p>{tweet.name}</p>
-        <input
-          type="text"
-          value={newdescri}
-          onChange={onChangedescri}
-          id="newdescri"
-        />
-        <input
-          type="file"
-          defaultValue={tweet.imageUrl}
-          id="newfile"
-          onChange={onChangeimage}
-        />
+    // <div className="modifystyle">
+    //   <div className="bordertop">
+    //     <p>{tweet.name}</p>
+    //     <input
+    //       type="text"
+    //       value={newdescri}
+    //       onChange={onChangedescri}
+    //       id="newdescri"
+    //     />
+    //     <input
+    //       type="file"
+    //       defaultValue={tweet.imageUrl}
+    //       id="newfile"
+    //       onChange={onChangeimage}
+    //     />
 
-        <button onClick={functionModify}>modifier</button>
+    //     <button onClick={functionModify}>modifier</button>
+    //     {ismodifydone
+    //       ? (localStorage.removeItem("id"), (<Navigate to="/accueil" />))
+    //       : ""}
+    //   </div>
+    // </div>
+    <div className="tweetblock">
+      <div className="message">
+        <TextField
+          type="text"
+          label="Ecrivez votre tweet"
+          id="textcontent"
+          onChange={onChangedescri}
+        />
+        <Button variant="contained" component="label">
+          Importer la nouvelle image
+          <input
+            hidden
+            accept="image/*"
+            multiple
+            type="file"
+            id="filecontent"
+            onChange={onChangeimage}
+          />
+        </Button>
+
+        <Button variant="contained" id="creertweet" onClick={functionModify}>
+          Modifier
+        </Button>
         {ismodifydone
           ? (localStorage.removeItem("id"), (<Navigate to="/accueil" />))
           : ""}
