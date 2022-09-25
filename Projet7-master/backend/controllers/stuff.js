@@ -23,85 +23,131 @@ exports.createThing = (req, res, next) => {
 };
 
 exports.modifyThing = (req, res, next) => {
-  // .then((tweet) => {
-  //   if (
-  //     tweet.userId !== req.auth.userId ||
-  //     req.body.description === "" ||
-  //     req.file === undefined
-  //   ) {
-  //     if (req.file === undefined) {
-  //       res.status(401).json({ message: "Not authorized" });
-  //     } else {
-  //       const filename = req.file.filename;
-  //       fs.unlink(`images/${filename}`, () => {});
-  //       res.status(401).json({ message: "Not authorized" });
-  //     }
-  //   } else {
-  //     const tweetModifie = req.file
-  //       ? {
-  //           ...req.body,
-  //           imageUrl: `${req.protocol}://${req.get("host")}/images/${
-  //             req.file.filename
-  //           }`,
-  //         }
-  //       : { ...req.body };
-  //     delete tweetModifie._userId;
-  //     Tweet.findOne({ _id: req.params.id })
-  //       .then((tweet) => {
-  //         const filename = tweet.imageUrl.split("/images/")[1];
-  //         fs.unlink(`images/${filename}`, () => {});
-  //         Tweet.updateOne(
-  //           { _id: req.params.id },
-  //           { ...tweetModifie, _id: req.params.id }
-  //         )
-  //           .then(() => res.status(200).json({ message: "tweet modifié!" }))
-  //           .catch((error) => res.status(401).json({ error }));
-  //       })
-  //       .catch((error) => {
-  //         res.status(400).json({ error });
-  //       });
-  //   }
-  // });
-
-  Tweet.findOne({ _id: req.params.id }).then((tweet) => {
-    if (
-      tweet.userId !== req.auth.userId ||
-      req.body.description === "" ||
-      req.file === undefined
-    ) {
-      if (req.file === undefined) {
-        res.status(401).json({ message: "Not authorized" });
-      } else {
-        const filename = req.file.filename;
-        fs.unlink(`images/${filename}`, () => {});
-        res.status(401).json({ message: "Not authorized" });
-      }
-    } else {
-      const tweetModifie = req.file
-        ? {
-            ...req.body,
-            imageUrl: `${req.protocol}://${req.get("host")}/images/${
-              req.file.filename
-            }`,
+  User.findOne({ _id: req.auth.userId }).then((adminbrut) => {
+    if (adminbrut.admin !== undefined) {
+      const admin = adminbrut.admin;
+      Tweet.findOne({ _id: req.params.id }).then((tweet) => {
+        if (
+          admin !== "true" ||
+          req.body.description === "" ||
+          req.file === undefined
+        ) {
+          if (req.file === undefined) {
+            res.status(401).json({ message: "Not authorized" });
+          } else {
+            const filename = req.file.filename;
+            fs.unlink(`images/${filename}`, () => {});
+            res.status(401).json({ message: "Not authorized" });
           }
-        : { ...req.body };
-      delete tweetModifie._userId;
-      Tweet.findOne({ _id: req.params.id })
-        .then((tweet) => {
-          const filename = tweet.imageUrl.split("/images/")[1];
-          fs.unlink(`images/${filename}`, () => {});
-          Tweet.updateOne(
-            { _id: req.params.id },
-            { ...tweetModifie, _id: req.params.id }
-          )
-            .then(() => res.status(200).json({ message: "tweet modifié!" }))
-            .catch((error) => res.status(401).json({ error }));
-        })
-        .catch((error) => {
-          res.status(400).json({ error });
-        });
+        } else {
+          const tweetModifie = req.file
+            ? {
+                ...req.body,
+                imageUrl: `${req.protocol}://${req.get("host")}/images/${
+                  req.file.filename
+                }`,
+              }
+            : { ...req.body };
+          delete tweetModifie._userId;
+          Tweet.findOne({ _id: req.params.id })
+            .then((tweet) => {
+              const filename = tweet.imageUrl.split("/images/")[1];
+              fs.unlink(`images/${filename}`, () => {});
+              Tweet.updateOne(
+                { _id: req.params.id },
+                { ...tweetModifie, _id: req.params.id }
+              )
+                .then(() => res.status(200).json({ message: "tweet modifié!" }))
+                .catch((error) => res.status(401).json({ error }));
+            })
+            .catch((error) => {
+              res.status(400).json({ error });
+            });
+        }
+      });
+    } else {
+      Tweet.findOne({ _id: req.params.id }).then((tweet) => {
+        if (
+          tweet.userId !== req.auth.userId ||
+          req.body.description === "" ||
+          req.file === undefined
+        ) {
+          if (req.file === undefined) {
+            res.status(401).json({ message: "Not authorized" });
+          } else {
+            const filename = req.file.filename;
+            fs.unlink(`images/${filename}`, () => {});
+            res.status(401).json({ message: "Not authorized" });
+          }
+        } else {
+          const tweetModifie = req.file
+            ? {
+                ...req.body,
+                imageUrl: `${req.protocol}://${req.get("host")}/images/${
+                  req.file.filename
+                }`,
+              }
+            : { ...req.body };
+          delete tweetModifie._userId;
+          Tweet.findOne({ _id: req.params.id })
+            .then((tweet) => {
+              const filename = tweet.imageUrl.split("/images/")[1];
+              fs.unlink(`images/${filename}`, () => {});
+              Tweet.updateOne(
+                { _id: req.params.id },
+                { ...tweetModifie, _id: req.params.id }
+              )
+                .then(() => res.status(200).json({ message: "tweet modifié!" }))
+                .catch((error) => res.status(401).json({ error }));
+            })
+            .catch((error) => {
+              res.status(400).json({ error });
+            });
+        }
+      });
     }
   });
+
+  //   Tweet.findOne({ _id: req.params.id }).then((tweet) => {
+  //     if (
+  //       admin !== "true" ||
+  //       req.body.description === "" ||
+  //       req.file === undefined
+  //     ) {
+  //       if (req.file === undefined) {
+  //         res.status(401).json({ message: "Not authorized" });
+  //       } else {
+  //         const filename = req.file.filename;
+  //         fs.unlink(`images/${filename}`, () => {});
+  //         res.status(401).json({ message: "Not authorized" });
+  //       }
+  //     } else {
+  //       const tweetModifie = req.file
+  //         ? {
+  //             ...req.body,
+  //             imageUrl: `${req.protocol}://${req.get("host")}/images/${
+  //               req.file.filename
+  //             }`,
+  //           }
+  //         : { ...req.body };
+  //       delete tweetModifie._userId;
+  //       Tweet.findOne({ _id: req.params.id })
+  //         .then((tweet) => {
+  //           const filename = tweet.imageUrl.split("/images/")[1];
+  //           fs.unlink(`images/${filename}`, () => {});
+  //           Tweet.updateOne(
+  //             { _id: req.params.id },
+  //             { ...tweetModifie, _id: req.params.id }
+  //           )
+  //             .then(() => res.status(200).json({ message: "tweet modifié!" }))
+  //             .catch((error) => res.status(401).json({ error }));
+  //         })
+  //         .catch((error) => {
+  //           res.status(400).json({ error });
+  //         });
+  //     }
+  //   });
+  // }
 };
 exports.deleteThing = (req, res, next) => {
   User.findOne({ _id: req.auth.userId }).then((adminbrut) => {
