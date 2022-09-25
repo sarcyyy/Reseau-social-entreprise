@@ -3,17 +3,17 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import islogged from "../script/Islogged";
-const Buttoncreate = () => {
+const Buttoncreate = ({ createemail, createpassword, createname }) => {
   const testtoken = localStorage.getItem("token");
   const fetchcreate = (e) => {
-    let emailcreer = document.getElementById("createemail");
-    let passworldcreer = document.getElementById("createpassword");
-    let nomcreer = document.getElementById("createname");
+    // let emailcreer = document.getElementById("createemail");
+    // let passworldcreer = document.getElementById("createpassword");
+    // let nomcreer = document.getElementById("createname");
 
     var login = {
-      email: emailcreer.value,
-      password: passworldcreer.value,
-      name: nomcreer.value,
+      email: createemail,
+      password: createpassword,
+      name: createname,
     };
     fetch("http://localhost:3000/api/auth/signup", {
       headers: {
