@@ -60,28 +60,6 @@ const Modifycomponent = () => {
     });
   };
   return (
-    // <div className="modifystyle">
-    //   <div className="bordertop">
-    //     <p>{tweet.name}</p>
-    //     <input
-    //       type="text"
-    //       value={newdescri}
-    //       onChange={onChangedescri}
-    //       id="newdescri"
-    //     />
-    //     <input
-    //       type="file"
-    //       defaultValue={tweet.imageUrl}
-    //       id="newfile"
-    //       onChange={onChangeimage}
-    //     />
-
-    //     <button onClick={functionModify}>modifier</button>
-    //     {ismodifydone
-    //       ? (localStorage.removeItem("id"), (<Navigate to="/accueil" />))
-    //       : ""}
-    //   </div>
-    // </div>
     <div className="tweetblock">
       <div className="message">
         <TextField
