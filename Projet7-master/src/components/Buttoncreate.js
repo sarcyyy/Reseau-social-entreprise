@@ -6,10 +6,6 @@ import islogged from "../script/Islogged";
 const Buttoncreate = ({ createemail, createpassword, createname }) => {
   const testtoken = localStorage.getItem("token");
   const fetchcreate = (e) => {
-    // let emailcreer = document.getElementById("createemail");
-    // let passworldcreer = document.getElementById("createpassword");
-    // let nomcreer = document.getElementById("createname");
-
     var login = {
       email: createemail,
       password: createpassword,
@@ -47,7 +43,6 @@ const Buttoncreate = ({ createemail, createpassword, createname }) => {
           {Islogtrue ? <Navigate to="/auth/login" /> : ""}
           Créer un compte
         </Button>
-        {/* </NavLink> */}
       </div>
     </div>
   );
