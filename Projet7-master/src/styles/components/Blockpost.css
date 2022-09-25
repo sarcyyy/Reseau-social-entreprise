@@ -2,22 +2,21 @@
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  margin-top: 10%;
+  margin-top: 5%;
   justify-content: center;
   gap: 15%;
 }
 .poststyle {
-  margin-left: 10%;
   margin-top: 50px;
   text-align: center;
-  width: 40%;
+  width: 1000px;
   height: 1%;
   border: 2px solid grey;
 }
 
 .filterstyle {
   top: 55%;
-  left: 15%;
+  left: 10%;
   padding: 15px;
   width: 100px;
   gap: 10px;
@@ -47,4 +46,27 @@
 
   padding: 30px;
   text-align: center;
+}
+
+@media (max-width: 1750px) {
+  .filterstyle {
+    position: relative;
+    left: 0;
+  }
+  .filterpage {
+    display: flex;
+    justify-content: center;
+  }
+  .blockpost {
+    margin-top: 0;
+  }
+  .poststyle {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
+@media (max-width: 680px) {
+  .message {
+    flex-direction: column;
+  }
 }
