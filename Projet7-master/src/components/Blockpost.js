@@ -55,6 +55,14 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
 
   return (
     <div>
+      <Filter
+        handleclick={handleclick}
+        rangevalue={rangevalue}
+        tweet={data}
+        maplike={maplike}
+        setMaplike={setMaplike}
+      />
+
       <div className="blockpost">
         {maplike
           ? data.map((tweet, index) => {
@@ -84,13 +92,6 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
                 />
               ))}
       </div>
-      <Filter
-        handleclick={handleclick}
-        rangevalue={rangevalue}
-        tweet={data}
-        maplike={maplike}
-        setMaplike={setMaplike}
-      />
     </div>
   );
 };

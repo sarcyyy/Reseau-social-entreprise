@@ -19,7 +19,7 @@ const Filter = ({ handleclick, rangevalue, tweet, maplike, setMaplike }) => {
   };
 
   return (
-    <div>
+    <div className="filterpage">
       <div className="filterstyle">
         <p className="textcenter">Filtres</p>
         <Slider
@@ -33,7 +33,12 @@ const Filter = ({ handleclick, rangevalue, tweet, maplike, setMaplike }) => {
           max={15}
         />
         {maplike ? (
-          <Button variant="contained" size="small" onClick={mapdislikeedit}>
+          <Button
+            variant="contained"
+            size="small"
+            onClick={mapdislikeedit}
+            className="trying"
+          >
             Accueil
           </Button>
         ) : (

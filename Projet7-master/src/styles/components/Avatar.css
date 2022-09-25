@@ -1,56 +1,19 @@
-.avatar{
- display: flex;
- margin-top: 2%;
- margin-left: 2%;
- gap:10px;
+.avatar {
+  display: flex;
+  margin-top: 15px;
+  margin-left: 2%;
+  gap: 10px;
 }
-.picsize{
-    border: 2px solid grey;
-    border-radius: 50%;  
-    height:50px;
-    width:50px;
-    object-fit: cover;
-
-}
-
-.tweetpicsize{
-  height:75px;
-    width:75px;
-    object-fit: cover;
-}
-.hidden{
-    display:none;
-    margin-left:2%;
-    position:absolute;
-    top:2%;
-    
+.picsize {
+  border: 2px solid grey;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
 }
 
-.avatar:hover + .hidden{
-    -webkit-animation: slide-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: slide-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-    display:block;
-    
+.tweetpicsize {
+  height: 75px;
+  width: 75px;
+  object-fit: cover;
 }
-
-    
-@-webkit-keyframes slide-bottom {
-    0% {
-      -webkit-transform: translateY(0);
-              transform: translateY(0);
-    }
-    100% {
-      -webkit-transform: translateY(80px);
-              transform: translateY(80px);
-    }
-  }
-  @keyframes slide-bottom {
-    0% {
-      -webkit-transform: translateY(0);
-              transform: translateY(0);
-    }
-    100% {
-      -webkit-transform: translateY(80px);
-              transform: translateY(80px);
-    }
-  }
