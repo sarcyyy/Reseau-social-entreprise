@@ -9,8 +9,9 @@ const Modifycomponent = () => {
   const [tweet, setTweet] = useState("");
   const [ismodifydone, setIsmodifydone] = useState(false);
   // const { user, setUser } = useContext(UserContext);
-  // const [newfile, setNewfile] = useState();
+
   const [newdescri, setNewdescri] = useState("");
+  const [newimage, setNewimage] = useState("");
   useEffect(() => {
     const tweetid = JSON.parse(localStorage.getItem("id"));
     const token = JSON.parse(localStorage.getItem("token")).token;
@@ -32,15 +33,13 @@ const Modifycomponent = () => {
   const onChangedescri = (e) => {
     setNewdescri(e.target.value);
   };
+  const onChangeimage = (e) => {
+    setNewimage(e.target.files[0]);
+  };
 
   const functionModify = (e) => {
-    // let newdescri = document.getElementById("newdescri");
-    let newfile = document.getElementById("newfile");
-    // useState
-    // console.log(newfile);
-    // console.log("descri", newdescri);
     const filed = new FormData();
-    filed.append("image", newfile.files[0]);
+    filed.append("image", newimage);
     filed.append("description", newdescri);
     const token = JSON.parse(localStorage.getItem("token")).token;
     fetch("http://localhost:3000/api/accueil/" + tweet._id, {
@@ -72,7 +71,7 @@ const Modifycomponent = () => {
           type="file"
           defaultValue={tweet.imageUrl}
           id="newfile"
-          // onChange={onChangefile}
+          onChange={onChangeimage}
         />
 
         <button onClick={functionModify}>modifier</button>
