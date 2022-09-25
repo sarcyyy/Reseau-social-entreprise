@@ -10,7 +10,7 @@ const Modifycomponent = () => {
   const [ismodifydone, setIsmodifydone] = useState(false);
   // const { user, setUser } = useContext(UserContext);
   // const [newfile, setNewfile] = useState();
-  const [newdescri, setNewdescri] = useState();
+  const [newdescri, setNewdescri] = useState("");
   useEffect(() => {
     const tweetid = JSON.parse(localStorage.getItem("id"));
     const token = JSON.parse(localStorage.getItem("token")).token;

@@ -4,16 +4,14 @@ import { Navigate } from "react-router-dom";
 import islogged from "../script/Islogged";
 import { Button } from "@mui/material";
 
-const Buttonconnect = () => {
+const Buttonconnect = ({ email, password }) => {
   const [Islogtrue, setIslogtrue] = useState(false);
   const testtoken = localStorage.getItem("token");
 
   const fetchconnect = (e) => {
-    let verifieremail = document.getElementById("verifyemail");
-    let verifierpassword = document.getElementById("verifypassword");
     var login = {
-      email: verifieremail.value,
-      password: verifierpassword.value,
+      email: email,
+      password: password,
     };
     fetch("http://localhost:3000/api/auth/login", {
       headers: {
