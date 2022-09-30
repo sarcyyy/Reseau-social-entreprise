@@ -30,18 +30,18 @@ const Post = ({ tweet, forceUpdate, admin }) => {
   // const { admin, setAdmin } = useContext(UserContext);
 
   useEffect(() => {
-    if (tweet.usersLiked.includes(user._id)) {
+    if (tweet.usersLiked.includes(user?._id)) {
       setLikeornot(true);
     } else {
       setLikeornot(false);
     }
-    if (tweet.userId === user._id || admin === "true") {
+    if (tweet.userId === user?._id || admin === "true") {
       setIsthecreator(true);
     }
-    if ((tweet.userId !== user._id) & (admin !== "true")) {
+    if ((tweet.userId !== user?._id) & (admin !== "true")) {
       setIsthecreator(false);
     }
-  }, [tweet, user._id, admin]);
+  }, [tweet, user?._id, admin]);
 
   return (
     <div className="poststyle">

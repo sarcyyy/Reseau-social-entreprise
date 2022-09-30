@@ -13,7 +13,7 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
   const [rangevalue, setRangevalue] = useState(5);
   const [maplike, setMaplike] = useState(false);
   const [admin, setAdmin] = useState(false);
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [verifytoken, setVerifytoken] = useState(
     JSON.parse(localStorage.getItem("token")).token
   );
@@ -40,8 +40,11 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
         setData(rep);
       });
     userdata(verifytoken).then((user) => {
-      setUser(user);
-      if (user.admin !== true) {
+      if (user !== null) {
+        setUser(user);
+      }
+
+      if (user.admin !== null) {
         setAdmin(user.admin);
       }
       console.log("user", user);
@@ -52,6 +55,12 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
   const handleclick = (e) => {
     setRangevalue(e.target.value);
   };
+  if (user === null)
+    return (
+      <div>
+        <p>Chargement..</p>
+      </div>
+    );
 
   return (
     <div>

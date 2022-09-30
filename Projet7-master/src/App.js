@@ -4,23 +4,24 @@ import TimeLine from "./pages/TimeLine";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Modify from "./pages/Modify";
-// import { UserContext } from "./script/UserContext";
+import { UserContext } from "./script/UserContext";
+import { useState } from "react";
 
 const App = () => {
-  // const [admin, setAdmin] = useState(null);
+  const [user, setUser] = useState(null);
   // const adminvalue = useMemo(() => ({ admin, setAdmin }), [admin, setAdmin]);
   return (
-    // <UserContext.Provider value={{ admin, setAdmin }}>
-    <BrowserRouter>
-      <Routes>
-        <Route path="*" element={<Navigate to="/auth/signup" />}></Route>
-        <Route path="/auth/login" element={<Login />}></Route>
-        <Route path="/auth/signup" element={<Signup />}></Route>
-        <Route path="/accueil" element={<TimeLine />}></Route>
-        <Route path="/accueil/modifier" element={<Modify />}></Route>
-      </Routes>
-    </BrowserRouter>
-    // {/* </UserContext.Provider> */}
+    <UserContext.Provider value={{ user, setUser }}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="*" element={<Navigate to="/auth/signup" />}></Route>
+          <Route path="/auth/login" element={<Login />}></Route>
+          <Route path="/auth/signup" element={<Signup />}></Route>
+          <Route path="/accueil" element={<TimeLine />}></Route>
+          <Route path="/accueil/modifier" element={<Modify />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </UserContext.Provider>
   );
 };
 
