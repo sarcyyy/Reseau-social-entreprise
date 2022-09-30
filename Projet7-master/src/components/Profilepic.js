@@ -9,10 +9,10 @@ const Profilepic = () => {
   const [nompersonne, setNompersonne] = useState("");
   const { user, setUser } = useContext(UserContext);
   const [verifytoken] = useState(
-    JSON.parse(localStorage.getItem("token")).token
+    JSON.parse(localStorage.getItem("token"))?.token
   );
   useEffect(() => {
-    setNompersonne(JSON.parse(localStorage.getItem("token")).name);
+    setNompersonne(JSON.parse(localStorage.getItem("token"))?.name);
     console.log(nompersonne);
 
     if (user === null) {
