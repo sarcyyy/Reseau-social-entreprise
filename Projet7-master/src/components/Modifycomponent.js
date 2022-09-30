@@ -28,6 +28,11 @@ const Modifycomponent = () => {
     })
       .then((res) => res.json())
       .then((tweet) => {
+        console.log(tweet);
+        if (tweet._id !== tweetid) {
+          localStorage.removeItem("id");
+          window.location = "http://localhost:7200/accueil";
+        }
         setTweet(tweet);
       });
   }, []);
