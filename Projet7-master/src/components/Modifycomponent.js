@@ -4,13 +4,10 @@ import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { TextField } from "@mui/material";
 import { Button } from "@mui/material";
-// import { UserContext } from "../script/UserContext";
-// import { useContext } from "react";
-// import userdata from "../script/Userdata";
+
 const Modifycomponent = () => {
   const [tweet, setTweet] = useState("");
   const [ismodifydone, setIsmodifydone] = useState(false);
-  // const { user, setUser } = useContext(UserContext);
 
   const [newdescri, setNewdescri] = useState("");
   const [newimage, setNewimage] = useState("");
@@ -61,6 +58,7 @@ const Modifycomponent = () => {
         setIsmodifydone(true);
       } else {
         setIsmodifydone(false);
+        alert("Erreur, veuillez ré-essayer");
       }
     });
   };
