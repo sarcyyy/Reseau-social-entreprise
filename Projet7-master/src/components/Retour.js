@@ -2,7 +2,19 @@ import { Button } from "@mui/material";
 import React from "react";
 
 const Retour = () => {
-  return <div>{/* <Button variant="contained"> Retour </Button> */}</div>;
+  const retour = (e) => {
+    localStorage.removeItem("id");
+    window.location = "http://localhost:7200/accueil";
+  };
+  return (
+    <div>
+      {" "}
+      <Button variant="contained" onClick={retour}>
+        {" "}
+        Retour{" "}
+      </Button>{" "}
+    </div>
+  );
 };
 
 export default Retour;
