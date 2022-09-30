@@ -1,3 +1,4 @@
+import userEvent from "@testing-library/user-event";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -19,6 +20,7 @@ const Profilepic = () => {
     setNompersonne(JSON.parse(localStorage.getItem("token")).name);
     console.log(nompersonne);
   }, [nompersonne]);
+  // if (!user) {return null}
   return (
     <div>
       <div className="avatar">
@@ -28,7 +30,7 @@ const Profilepic = () => {
           className="picsize"
           onClick={() => {}}
         />
-        <p>{nompersonne}</p>
+        <p> {nompersonne && nompersonne}</p>
       </div>
     </div>
   );
