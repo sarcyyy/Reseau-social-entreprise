@@ -46,7 +46,7 @@ const Post = ({ tweet, forceUpdate, admin }) => {
   return (
     <div className="poststyle">
       <div className="bordertop">
-        <p>{tweet.name}</p>
+        <p className="person_name">{tweet.name}</p>
         <p>{tweet.description}</p>
         <img src={tweet.imageUrl} alt="" className="tweetpicsize" />
         {likeornot ? (

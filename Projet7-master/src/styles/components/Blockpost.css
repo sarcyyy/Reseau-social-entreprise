@@ -48,6 +48,11 @@
   text-align: center;
 }
 
+.person_name {
+  font-size: 30px;
+  font-weight: bold;
+  font-style: italic;
+}
 @media (max-width: 1750px) {
   .filterstyle {
     position: relative;
