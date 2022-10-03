@@ -41,7 +41,7 @@ const Profilepic = () => {
           onClick={() => {}}
         />
 
-        <p> {user?.name}</p>
+        <p className="nompersonne"> {user?.name}</p>
       </div>
     </div>
   );

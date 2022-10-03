@@ -32,7 +32,7 @@ const Tweet = ({ forceUpdate, reducerValue }) => {
           onChange={recupmessage}
         />
         <Button variant="contained" component="label" onChange={recupfile}>
-          Importer l'image
+          Importer image
           <input
             hidden
             accept="image/*"

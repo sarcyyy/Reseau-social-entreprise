@@ -1,19 +1,23 @@
-.paddingT10{
-    padding-top: 10%;
+* {
+  font-family: "Lato", sans-serif;
 }
-.width100{
-    width:100%;
+
+.paddingT10 {
+  padding-top: 10%;
 }
-.textcenter{
-    text-align: center;
+.width100 {
+  width: 100%;
 }
-.padding20T{
-    padding-top: 20%;
+.textcenter {
+  text-align: center;
 }
-.centered{
-    display:flex;
-    justify-content: center;
+.padding20T {
+  padding-top: 20%;
 }
-.wrap{
-    flex-wrap:wrap;
+.centered {
+  display: flex;
+  justify-content: center;
+}
+.wrap {
+  flex-wrap: wrap;
 }
