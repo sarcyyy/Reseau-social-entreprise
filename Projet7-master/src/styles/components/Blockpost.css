@@ -53,6 +53,11 @@
   font-weight: bold;
   font-style: italic;
 }
+.chargement {
+  position: fixed;
+  left: 50%;
+  top: 65%;
+}
 @media (max-width: 1750px) {
   .filterstyle {
     position: relative;

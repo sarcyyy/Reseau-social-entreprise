@@ -13,7 +13,7 @@ const Tweet = ({ forceUpdate, reducerValue }) => {
     setImage(e.target.files[0]);
   };
   const createtweet = (e) => {
-    let name = JSON.parse(localStorage.getItem("token")).name;
+    let name = JSON.parse(localStorage.getItem("token"))?.name;
     const file = new FormData();
 
     file.append("image", image);

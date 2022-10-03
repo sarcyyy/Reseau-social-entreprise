@@ -15,7 +15,7 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
   const [admin, setAdmin] = useState(false);
   const { user, setUser } = useContext(UserContext);
   const [verifytoken, setVerifytoken] = useState(
-    JSON.parse(localStorage.getItem("token")).token
+    JSON.parse(localStorage.getItem("token"))?.token
   );
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
   };
   if (user === null)
     return (
-      <div>
+      <div className="chargement">
         <p>Chargement..</p>
       </div>
     );
