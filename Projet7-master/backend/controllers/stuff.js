@@ -1,8 +1,8 @@
 const Tweet = require("../models/Tweet");
 const fs = require("fs");
 const User = require("../models/User");
-// modifier nom exports
-exports.createThing = (req, res, next) => {
+
+exports.creerPost = (req, res, next) => {
   const tweetObjet = req.body;
   console.log(req.auth.userId);
   delete req.body._id;
@@ -22,7 +22,7 @@ exports.createThing = (req, res, next) => {
     .catch((error) => res.status(400).json({ message: error }));
 };
 
-exports.modifyThing = (req, res, next) => {
+exports.modifierPost = (req, res, next) => {
   User.findOne({ _id: req.auth.userId }).then((adminbrut) => {
     if (adminbrut.admin !== undefined) {
       const admin = adminbrut.admin;
@@ -108,7 +108,7 @@ exports.modifyThing = (req, res, next) => {
     }
   });
 };
-exports.deleteThing = (req, res, next) => {
+exports.supprimerPost = (req, res, next) => {
   User.findOne({ _id: req.auth.userId }).then((adminbrut) => {
     if (adminbrut.admin !== undefined) {
       const admin = adminbrut.admin;
@@ -151,13 +151,13 @@ exports.deleteThing = (req, res, next) => {
   });
 };
 
-exports.getOneThing = (req, res, next) => {
+exports.recupererPost = (req, res, next) => {
   Tweet.findOne({ _id: req.params.id })
     .then((tweet) => res.status(200).json(tweet))
     .catch((error) => res.status(400).json({ error }));
 };
 
-exports.getAllStuff = (req, res, next) => {
+exports.recupererAllPost = (req, res, next) => {
   Tweet.find()
     .sort({ _id: -1 })
     .then((tweet) => res.status(200).json(tweet))
