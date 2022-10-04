@@ -13,7 +13,7 @@ exports.creerPost = (req, res, next) => {
   const tweet = new Tweet({
     ...tweetObjet,
     imageUrl: `${req.protocol}://${req.get("host")}/images/${
-      req.file.filename
+      req.file?.filename
     }`,
   });
   tweet
@@ -27,18 +27,8 @@ exports.modifierPost = (req, res, next) => {
     if (adminbrut.admin !== undefined) {
       const admin = adminbrut.admin;
       Tweet.findOne({ _id: req.params.id }).then((tweet) => {
-        if (
-          admin !== "true" ||
-          req.body.description === "" ||
-          req.file === undefined
-        ) {
-          if (req.file === undefined) {
-            res.status(401).json({ message: "Not authorized" });
-          } else {
-            const filename = req.file.filename;
-            fs.unlink(`images/${filename}`, () => {});
-            res.status(401).json({ message: "Not authorized" });
-          }
+        if (admin !== "true" || req.body.description === "") {
+          res.status(401).json({ message: "Not authorized" });
         } else {
           const tweetModifie = req.file
             ? {
@@ -67,18 +57,8 @@ exports.modifierPost = (req, res, next) => {
       });
     } else {
       Tweet.findOne({ _id: req.params.id }).then((tweet) => {
-        if (
-          tweet.userId !== req.auth.userId ||
-          req.body.description === "" ||
-          req.file === undefined
-        ) {
-          if (req.file === undefined) {
-            res.status(401).json({ message: "Not authorized" });
-          } else {
-            const filename = req.file.filename;
-            fs.unlink(`images/${filename}`, () => {});
-            res.status(401).json({ message: "Not authorized" });
-          }
+        if (tweet.userId !== req.auth.userId || req.body.description === "") {
+          res.status(401).json({ message: "Not authorized" });
         } else {
           const tweetModifie = req.file
             ? {
