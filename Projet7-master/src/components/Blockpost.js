@@ -1,7 +1,7 @@
 import React from "react";
 import Post from "./Post";
 import { useEffect, useState } from "react";
-// import islogged from "../script/Islogged";
+
 import Filter from "./Filter";
 import { UserContext } from "../script/UserContext";
 import { useContext } from "react";

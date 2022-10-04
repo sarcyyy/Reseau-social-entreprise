@@ -7,8 +7,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { deletefetch, dislikefetch, likefetch } from "../script/Allfetch";
 import { UserContext } from "../script/UserContext";
 import { useContext } from "react";
-// import { UserContext } from "../script/UserContext";
-// import { useContext } from "react";
+
 const Post = ({ tweet, forceUpdate, admin }) => {
   const { user } = useContext(UserContext);
   const functionLike = (e) => {
@@ -26,8 +25,6 @@ const Post = ({ tweet, forceUpdate, admin }) => {
   };
   const [likeornot, setLikeornot] = useState(false);
   const [isthecreator, setIsthecreator] = useState(false);
-
-  // const { admin, setAdmin } = useContext(UserContext);
 
   useEffect(() => {
     if (tweet.usersLiked.includes(user?._id)) {

@@ -9,7 +9,7 @@ import { useState } from "react";
 
 const App = () => {
   const [user, setUser] = useState(null);
-  // const adminvalue = useMemo(() => ({ admin, setAdmin }), [admin, setAdmin]);
+
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <BrowserRouter>
