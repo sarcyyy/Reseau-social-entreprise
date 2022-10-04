@@ -13,6 +13,11 @@ const Loginoption = () => {
     setPassword(e.target.value);
     console.log("password", password);
   };
+  const tryingsome = (e) => {
+    if (e.key === "Enter") {
+      console.log("entré");
+    }
+  };
   return (
     <div className="LoginAndsignup paddingT10">
       <div className="textcenter">
@@ -29,6 +34,7 @@ const Loginoption = () => {
           label="mot de passe"
           id="verifypassword"
           onChange={changepassword}
+          onKeyDown={tryingsome}
         />
       </div>
       <Buttonconnect email={email} password={password} />

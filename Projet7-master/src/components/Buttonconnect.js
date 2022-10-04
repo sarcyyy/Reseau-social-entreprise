@@ -40,6 +40,7 @@ const Buttonconnect = ({ email, password }) => {
         }
       });
   };
+
   if (islogged(testtoken) === true) {
     window.location = "http://localhost:7200/accueil";
   }
