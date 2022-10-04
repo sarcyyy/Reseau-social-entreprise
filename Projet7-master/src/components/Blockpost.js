@@ -1,7 +1,7 @@
 import React from "react";
 import Post from "./Post";
 import { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import Filter from "./Filter";
 import { UserContext } from "../script/UserContext";
 import { useContext } from "react";
@@ -17,13 +17,14 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
   const [verifytoken, setVerifytoken] = useState(
     JSON.parse(localStorage.getItem("token"))?.token
   );
+  const navigate = useNavigate();
 
   useEffect(() => {
     verifyvalidity(verifytoken).then((rep) => {
       if (rep.ok !== true) {
         localStorage.removeItem("token");
         localStorage.removeItem("id");
-        window.location = "http://localhost:7200/auth/login";
+        navigate("/auth/login");
       }
     });
 

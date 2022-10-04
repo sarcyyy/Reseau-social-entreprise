@@ -4,13 +4,14 @@ import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { TextField } from "@mui/material";
 import { Button } from "@mui/material";
-
+import { useNavigate } from "react-router-dom";
 const Modifycomponent = () => {
   const [tweet, setTweet] = useState("");
   const [ismodifydone, setIsmodifydone] = useState(false);
 
   const [newdescri, setNewdescri] = useState("");
   const [newimage, setNewimage] = useState("");
+  const navigate = useNavigate();
   useEffect(() => {
     const tweetid = JSON.parse(localStorage.getItem("id"));
     const token = JSON.parse(localStorage.getItem("token"))?.token;
@@ -28,7 +29,8 @@ const Modifycomponent = () => {
         console.log(tweet);
         if (tweet._id !== tweetid) {
           localStorage.removeItem("id");
-          window.location = "http://localhost:7200/accueil";
+          navigate("/accueil");
+          // window.location = "http://localhost:7200/accueil";
         }
         setTweet(tweet);
       });

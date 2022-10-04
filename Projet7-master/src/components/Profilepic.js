@@ -5,12 +5,14 @@ import { UserContext } from "../script/UserContext";
 import { useContext } from "react";
 import { verifyvalidity } from "../script/Allfetch";
 import userdata from "../script/Userdata";
+import { useNavigate } from "react-router-dom";
 const Profilepic = () => {
   const [nompersonne, setNompersonne] = useState("");
   const { user, setUser } = useContext(UserContext);
   const [verifytoken] = useState(
     JSON.parse(localStorage.getItem("token"))?.token
   );
+  const navigate = useNavigate();
   useEffect(() => {
     setNompersonne(JSON.parse(localStorage.getItem("token"))?.name);
     console.log(nompersonne);
@@ -20,7 +22,8 @@ const Profilepic = () => {
         if (rep.ok !== true) {
           localStorage.removeItem("token");
           localStorage.removeItem("id");
-          window.location = "http://localhost:7200/auth/login";
+          navigate("/auth/login");
+          // window.location = "http://localhost:7200/auth/login";
         }
       });
       userdata(verifytoken).then((user) => {
@@ -29,7 +32,7 @@ const Profilepic = () => {
         }
       });
     }
-  }, [nompersonne, setUser, user, verifytoken]);
+  }, [nompersonne, setUser, user, verifytoken, navigate]);
 
   return (
     <div>
