@@ -14,7 +14,7 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
   const [maplike, setMaplike] = useState(false);
   const [admin, setAdmin] = useState(false);
   const { user, setUser } = useContext(UserContext);
-  const [verifytoken, setVerifytoken] = useState(
+  const [verifytoken] = useState(
     JSON.parse(localStorage.getItem("token"))?.token
   );
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
       console.log("user", user);
       setUserId(user._id);
     });
-  }, [reducerValue, maplike, setUser, verifytoken]);
+  }, [reducerValue, maplike, setUser, verifytoken, navigate]);
 
   const handleclick = (e) => {
     setRangevalue(e.target.value);

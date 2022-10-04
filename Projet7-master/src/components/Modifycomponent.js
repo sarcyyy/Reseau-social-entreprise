@@ -33,7 +33,7 @@ const Modifycomponent = () => {
         }
         setTweet(tweet);
       });
-  }, []);
+  }, [navigate]);
   console.log(tweet.usersLiked);
   const onChangedescri = (e) => {
     setNewdescri(e.target.value);

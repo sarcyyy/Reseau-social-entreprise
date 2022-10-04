@@ -24,7 +24,7 @@ const Post = ({ tweet, forceUpdate, admin }) => {
     localStorage.setItem("id", JSON.stringify(id));
   };
   const [likeornot, setLikeornot] = useState(false);
-  const [isthecreator, setIsthecreator] = useState(false);
+  const [isthecreator, setIsthecreator] = useState("");
 
   useEffect(() => {
     if (tweet.usersLiked.includes(user?._id)) {
@@ -38,7 +38,7 @@ const Post = ({ tweet, forceUpdate, admin }) => {
     if ((tweet.userId !== user?._id) & (admin !== "true")) {
       setIsthecreator(false);
     }
-  }, [tweet, user?._id, admin]);
+  }, [tweet, user?._id, admin, setIsthecreator]);
 
   return (
     <div className="poststyle">

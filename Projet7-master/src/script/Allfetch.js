@@ -1,6 +1,5 @@
-const token = JSON.parse(localStorage.getItem("token"));
-
 export function deletefetch(tweetid, forceUpdate) {
+  const token = JSON.parse(localStorage.getItem("token"));
   return fetch("http://localhost:3000/api/accueil/" + tweetid, {
     headers: {
       Accept: "application/json",
@@ -13,6 +12,7 @@ export function deletefetch(tweetid, forceUpdate) {
   });
 }
 export function likefetch(tweetid, forceUpdate) {
+  const token = JSON.parse(localStorage.getItem("token"));
   const like = {
     like: 1,
   };
@@ -31,6 +31,7 @@ export function likefetch(tweetid, forceUpdate) {
   });
 }
 export function dislikefetch(tweetid, forceUpdate) {
+  const token = JSON.parse(localStorage.getItem("token"));
   const dislike = {
     like: 0,
   };
@@ -49,6 +50,7 @@ export function dislikefetch(tweetid, forceUpdate) {
   });
 }
 export function createfetch(file, forceUpdate) {
+  const token = JSON.parse(localStorage.getItem("token"));
   fetch("http://localhost:3000/api/accueil", {
     headers: {
       Accept: "application/json",

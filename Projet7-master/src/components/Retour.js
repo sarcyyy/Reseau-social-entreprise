@@ -10,11 +10,9 @@ const Retour = () => {
   };
   return (
     <div>
-      {" "}
       <Button variant="contained" onClick={retour}>
-        {" "}
-        Retour{" "}
-      </Button>{" "}
+        Retour
+      </Button>
     </div>
   );
 };

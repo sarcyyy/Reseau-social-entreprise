@@ -31,7 +31,7 @@ const Profilepic = () => {
         }
       });
     }
-  }, [nompersonne, setUser, user, verifytoken]);
+  }, [nompersonne, setUser, user, verifytoken, navigate]);
 
   return (
     <div>
