@@ -47,10 +47,6 @@ const Buttoncreate = ({ createemail, createpassword, createname }) => {
     }
   };
 
-  // if (islogged(testtoken) === true) {
-  //   window.location = "http://localhost:7200/accueil";
-  // }
-
   const [Islogtrue, setIslogtrue] = useState(false);
   return (
     <div>

@@ -5,7 +5,7 @@ const Retour = () => {
   const navigate = useNavigate();
   const retour = (e) => {
     localStorage.removeItem("id");
-    // window.location = "http://localhost:7200/accueil";
+
     navigate("/accueil");
   };
   return (

@@ -30,7 +30,6 @@ const Modifycomponent = () => {
         if (tweet._id !== tweetid) {
           localStorage.removeItem("id");
           navigate("/accueil");
-          // window.location = "http://localhost:7200/accueil";
         }
         setTweet(tweet);
       });

@@ -23,7 +23,6 @@ const Profilepic = () => {
           localStorage.removeItem("token");
           localStorage.removeItem("id");
           navigate("/auth/login");
-          // window.location = "http://localhost:7200/auth/login";
         }
       });
       userdata(verifytoken).then((user) => {
@@ -32,7 +31,7 @@ const Profilepic = () => {
         }
       });
     }
-  }, [nompersonne, setUser, user, verifytoken, navigate]);
+  }, [nompersonne, setUser, user, verifytoken]);
 
   return (
     <div>
