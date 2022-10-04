@@ -41,8 +41,10 @@ exports.modifierPost = (req, res, next) => {
           delete tweetModifie._userId;
           Tweet.findOne({ _id: req.params.id })
             .then((tweet) => {
-              const filename = tweet.imageUrl.split("/images/")[1];
-              fs.unlink(`images/${filename}`, () => {});
+              if (req.file !== undefined) {
+                const filename = tweet.imageUrl.split("/images/")[1];
+                fs.unlink(`images/${filename}`, () => {});
+              }
               Tweet.updateOne(
                 { _id: req.params.id },
                 { ...tweetModifie, _id: req.params.id }
@@ -71,8 +73,11 @@ exports.modifierPost = (req, res, next) => {
           delete tweetModifie._userId;
           Tweet.findOne({ _id: req.params.id })
             .then((tweet) => {
-              const filename = tweet.imageUrl.split("/images/")[1];
-              fs.unlink(`images/${filename}`, () => {});
+              if (req.file !== undefined) {
+                const filename = tweet.imageUrl.split("/images/")[1];
+                fs.unlink(`images/${filename}`, () => {});
+              }
+
               Tweet.updateOne(
                 { _id: req.params.id },
                 { ...tweetModifie, _id: req.params.id }
