@@ -6,12 +6,16 @@ import { createfetch } from "../script/Allfetch";
 const Tweet = ({ forceUpdate, reducerValue }) => {
   const [message, setMessage] = useState("");
   const [image, setImage] = useState("");
-
+  const resetfile = (e) => {
+    e.target.value = null;
+  };
   const recupmessage = (e) => {
     setMessage(e.target.value);
+    console.log("img", image);
   };
   const recupfile = (e) => {
     setImage(e.target.files[0]);
+    console.log("file", e.target?.files[0]);
   };
   const createtweet = (e) => {
     let name = JSON.parse(localStorage.getItem("token"))?.name;
@@ -39,6 +43,7 @@ const Tweet = ({ forceUpdate, reducerValue }) => {
           Importer image
           <input
             hidden
+            onClick={resetfile}
             accept="image/*"
             multiple
             type="file"
