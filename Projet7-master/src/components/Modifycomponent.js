@@ -8,13 +8,14 @@ import { useNavigate } from "react-router-dom";
 const Modifycomponent = () => {
   const [tweet, setTweet] = useState("");
   const [ismodifydone, setIsmodifydone] = useState(false);
+  const [descriptionvalue, setDescriptionvalue] = useState("");
   const [newdescri, setNewdescri] = useState("");
   const [newimage, setNewimage] = useState("");
-  const [descriptionvalue, setDescriptionvalue] = useState("");
+  const [token] = useState(JSON.parse(localStorage.getItem("token"))?.token);
   const navigate = useNavigate();
   useEffect(() => {
     const tweetid = JSON.parse(localStorage.getItem("id"));
-    const token = JSON.parse(localStorage.getItem("token"))?.token;
+    // const token = JSON.parse(localStorage.getItem("token"))?.token;
 
     fetch("http://localhost:3000/api/accueil/" + tweetid, {
       headers: {
@@ -33,8 +34,9 @@ const Modifycomponent = () => {
         }
         setTweet(tweet);
         setDescriptionvalue(tweet.description);
+        setNewdescri(tweet.description);
       });
-  }, [navigate]);
+  }, [navigate, token]);
   console.log(tweet.usersLiked);
   const onChangedescri = (e) => {
     setNewdescri(e.target.value);
@@ -48,7 +50,7 @@ const Modifycomponent = () => {
     const filed = new FormData();
     filed.append("image", newimage);
     filed.append("description", newdescri);
-    const token = JSON.parse(localStorage.getItem("token"))?.token;
+    // const token = JSON.parse(localStorage.getItem("token"))?.token;
     fetch("http://localhost:3000/api/accueil/" + tweet._id, {
       headers: {
         Accept: "application/json",
