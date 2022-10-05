@@ -2,9 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { Button } from "@mui/material";
-// import islogged from "../script/Islogged";
+
 const Buttoncreate = ({ createemail, createpassword, createname }) => {
-  // const testtoken = localStorage.getItem("token");
   const fetchcreate = (e) => {
     let regexpassword = new RegExp("^[a-zA-Z -]{3,}$");
     let regexemail = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");

@@ -6,7 +6,6 @@ import { Button } from "@mui/material";
 
 const Buttonconnect = ({ email, password }) => {
   const [Islogtrue, setIslogtrue] = useState(false);
-  // const testtoken = localStorage.getItem("token");
 
   const fetchconnect = (e) => {
     var login = {
@@ -40,10 +39,6 @@ const Buttonconnect = ({ email, password }) => {
         }
       });
   };
-
-  // if (islogged(testtoken) === true) {
-  //   navigate("/accueil");
-  // }
 
   return (
     <div className="LoginAndsignup paddingT10">

@@ -15,7 +15,6 @@ const Modifycomponent = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const tweetid = JSON.parse(localStorage.getItem("id"));
-    // const token = JSON.parse(localStorage.getItem("token"))?.token;
 
     fetch("http://localhost:3000/api/accueil/" + tweetid, {
       headers: {
@@ -50,7 +49,7 @@ const Modifycomponent = () => {
     const filed = new FormData();
     filed.append("image", newimage);
     filed.append("description", newdescri);
-    // const token = JSON.parse(localStorage.getItem("token"))?.token;
+
     fetch("http://localhost:3000/api/accueil/" + tweet._id, {
       headers: {
         Accept: "application/json",
