@@ -6,10 +6,9 @@ import { createfetch } from "../script/Allfetch";
 const Tweet = ({ forceUpdate, reducerValue }) => {
   const [message, setMessage] = useState("");
   const [image, setImage] = useState("");
-  const [valuefield, setValuefield] = useState("");
+
   const recupmessage = (e) => {
     setMessage(e.target.value);
-    setValuefield(e.target.value);
   };
   const recupfile = (e) => {
     setImage(e.target.files[0]);
@@ -23,7 +22,8 @@ const Tweet = ({ forceUpdate, reducerValue }) => {
     file.append("name", name);
     file.append("userId", "userid");
     createfetch(file, forceUpdate);
-    setValuefield("");
+    setMessage("");
+    setImage("");
   };
   return (
     <div className="tweetblock">
@@ -32,7 +32,7 @@ const Tweet = ({ forceUpdate, reducerValue }) => {
           type="text"
           label="Ecrivez votre tweet"
           id="textcontent"
-          value={valuefield}
+          value={message}
           onChange={recupmessage}
         />
         <Button variant="contained" component="label" onChange={recupfile}>

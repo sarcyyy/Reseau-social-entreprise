@@ -8,9 +8,9 @@ import { useNavigate } from "react-router-dom";
 const Modifycomponent = () => {
   const [tweet, setTweet] = useState("");
   const [ismodifydone, setIsmodifydone] = useState(false);
-
   const [newdescri, setNewdescri] = useState("");
   const [newimage, setNewimage] = useState("");
+  const [descriptionvalue, setDescriptionvalue] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     const tweetid = JSON.parse(localStorage.getItem("id"));
@@ -32,11 +32,13 @@ const Modifycomponent = () => {
           navigate("/accueil");
         }
         setTweet(tweet);
+        setDescriptionvalue(tweet.description);
       });
   }, [navigate]);
   console.log(tweet.usersLiked);
   const onChangedescri = (e) => {
     setNewdescri(e.target.value);
+    setDescriptionvalue(e.target.value);
   };
   const onChangeimage = (e) => {
     setNewimage(e.target.files[0]);
@@ -71,6 +73,7 @@ const Modifycomponent = () => {
           label="Ecrivez votre tweet"
           id="textcontent"
           onChange={onChangedescri}
+          value={descriptionvalue}
         />
         <Button variant="contained" component="label">
           Importer la nouvelle image
