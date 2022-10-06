@@ -1,7 +1,7 @@
 How to install the project
 If node isn't installed on ur computer, please install it : https://nodejs.org/en/download/
 
-                                                                ##In the src folder please run the following commands:
+                                                                In the src folder please run the following commands:
 
 npm install
 
