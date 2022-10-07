@@ -85,6 +85,12 @@
   }
 }
 @media (max-width: 680px) {
+  .poststyle {
+    border-radius: 25px;
+  }
+  .description_field {
+    max-width: 200px;
+  }
   .message {
     flex-direction: column;
   }
