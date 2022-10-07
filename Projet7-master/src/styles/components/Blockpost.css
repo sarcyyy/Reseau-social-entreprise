@@ -19,6 +19,8 @@
   max-width: 500px;
   padding-left: 25px;
   padding-right: 25px;
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 .filterstyle {
   top: 55%;
