@@ -33,13 +33,21 @@ const Tweet = ({ forceUpdate, reducerValue }) => {
     <div className="tweetblock">
       <div className="message">
         <TextField
+          multiline
+          maxRows={5}
+          className="widthfield"
           type="text"
           label="Ecrivez votre tweet"
           id="textcontent"
           value={message}
           onChange={recupmessage}
         />
-        <Button variant="contained" component="label" onChange={recupfile}>
+        <Button
+          variant="contained"
+          className="inputheight"
+          component="label"
+          onChange={recupfile}
+        >
           Importer image
           <input
             hidden
@@ -51,7 +59,12 @@ const Tweet = ({ forceUpdate, reducerValue }) => {
           />
         </Button>
 
-        <Button variant="contained" id="creertweet" onClick={createtweet}>
+        <Button
+          variant="contained"
+          id="creertweet"
+          className="inputheight"
+          onClick={createtweet}
+        >
           Envoyer
         </Button>
       </div>

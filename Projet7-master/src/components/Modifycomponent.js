@@ -70,13 +70,16 @@ const Modifycomponent = () => {
     <div className="tweetblock">
       <div className="message">
         <TextField
+          multiline
+          maxRows={5}
+          className="widthfield"
           type="text"
           label="Ecrivez votre tweet"
           id="textcontent"
           onChange={onChangedescri}
           value={descriptionvalue}
         />
-        <Button variant="contained" component="label">
+        <Button variant="contained" className="inputheight" component="label">
           Importer la nouvelle image
           <input
             hidden
@@ -88,7 +91,12 @@ const Modifycomponent = () => {
           />
         </Button>
 
-        <Button variant="contained" id="creertweet" onClick={functionModify}>
+        <Button
+          variant="contained"
+          id="creertweet"
+          className="inputheight"
+          onClick={functionModify}
+        >
           Modifier
         </Button>
         {ismodifydone

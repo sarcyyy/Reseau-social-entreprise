@@ -10,7 +10,7 @@ const Retour = () => {
   };
   return (
     <div>
-      <Button variant="contained" onClick={retour}>
+      <Button variant="contained" className="retourstyle" onClick={retour}>
         Retour
       </Button>
     </div>
