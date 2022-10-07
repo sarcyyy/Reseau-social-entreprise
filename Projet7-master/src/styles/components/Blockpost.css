@@ -7,13 +7,19 @@
   gap: 15%;
 }
 .poststyle {
+  display: flex;
+  justify-content: center;
   margin-top: 50px;
   text-align: center;
   width: 1000px;
   height: 1%;
   border: 2px solid #4e5166;
 }
-
+.description_field {
+  max-width: 500px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
 .filterstyle {
   top: 55%;
   left: 10%;
