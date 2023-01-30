@@ -1,7 +1,38 @@
 * {
   font-family: "Lato", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.label-file {
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  color: black;
+  background: #00b1ca;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid black;
+}
+.text-size {
+  font-size: 15px;
+}
+ul.hide {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 0.5s, opacity 0.5s linear;
 }
 
+ul.show {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+
+.label-file:hover {
+  background: #232735;
+  transition: 1s;
+}
 .paddingT10 {
   padding-top: 10%;
 }
@@ -20,4 +51,30 @@
 }
 .wrap {
   flex-wrap: wrap;
+}
+
+.no_button_style {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.button_style {
+  background: #544ff0;
+  border: 1px solid #544ff0;
+  padding: 8px;
+  border-radius: 10px;
+  letter-spacing: 0.05em;
+}
+.button_style:hover {
+  background: #9a97f0;
+  border: 1px solid black;
+  transition: 0.5s;
+  letter-spacing: 0.01em;
+}
+.blue_color {
+  color: #f07067;
 }

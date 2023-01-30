@@ -62,7 +62,6 @@ const Blockpost = ({ forceUpdate, reducerValue }) => {
         <p>Chargement..</p>
       </div>
     );
-
   return (
     <div>
       <Filter

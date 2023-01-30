@@ -13,6 +13,9 @@ const Profilepic = () => {
     JSON.parse(localStorage.getItem("token"))?.token
   );
   const navigate = useNavigate();
+  const gotosettings = (e) => {
+    navigate("/profile");
+  };
   useEffect(() => {
     setNompersonne(JSON.parse(localStorage.getItem("token"))?.name);
     console.log(nompersonne);
@@ -40,7 +43,7 @@ const Profilepic = () => {
           src="/img/logogroupo.png"
           alt="profil"
           className="picsize"
-          onClick={() => {}}
+          // onClick={gotosettings}
         />
 
         <p className="nompersonne"> {user?.name}</p>

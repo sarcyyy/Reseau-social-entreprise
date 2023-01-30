@@ -32,41 +32,34 @@ const Tweet = ({ forceUpdate, reducerValue }) => {
   return (
     <div className="tweetblock">
       <div className="message">
-        <TextField
-          multiline
-          maxRows={5}
-          className="widthfield"
-          type="text"
-          label="Ecrivez votre tweet"
-          id="textcontent"
-          value={message}
-          onChange={recupmessage}
-        />
-        <Button
-          variant="contained"
-          className="inputheight"
-          component="label"
-          onChange={recupfile}
-        >
-          Importer image
+        <div className="inputbox2">
           <input
-            hidden
-            onClick={resetfile}
-            accept="image/*"
-            multiple
-            type="file"
-            id="filecontent"
+            type="text"
+            required="required"
+            onChange={recupmessage}
+            value={message}
           />
-        </Button>
-
-        <Button
-          variant="contained"
-          id="creertweet"
-          className="inputheight"
+          <span>Ecrivez votre message ! </span>
+          <i></i>
+        </div>
+        <label for="file" className="label-file" value="Envoyer le post!">
+          Importer une image
+        </label>
+        <input
+          id="file"
+          hidden
+          class="input-file"
+          type="file"
+          onChange={recupfile}
+          onClick={resetfile}
+        />
+        <input
+          id="tweet"
+          value="Envoyer le post!"
+          className="label-file text-size"
+          type="submit"
           onClick={createtweet}
-        >
-          Envoyer
-        </Button>
+        />
       </div>
     </div>
   );

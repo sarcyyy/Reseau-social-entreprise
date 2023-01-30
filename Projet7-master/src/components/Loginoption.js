@@ -1,6 +1,6 @@
 import React from "react";
 import Buttonconnect from "./Buttonconnect";
-import { TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 const Loginoption = () => {
   const [email, setEmail] = useState();
@@ -13,31 +13,41 @@ const Loginoption = () => {
     setPassword(e.target.value);
     console.log("password", password);
   };
-  const tryingsome = (e) => {
-    if (e.key === "Enter") {
-      console.log("entré");
-    }
+  const navigate = useNavigate();
+  const gotocreate = (e) => {
+    navigate("/auth/signup");
   };
   return (
-    <div className="LoginAndsignup paddingT10">
-      <div className="textcenter">
-        <TextField
-          type="text"
-          label="email"
-          id="verifyemail"
-          onChange={changeemail}
-        />
+    <div className="big">
+      <div className="login_and_signup">
+        <div className="form">
+          <h2> Connectez-vous !</h2>
+          <div className="inputbox">
+            <input type="text" required="required" onChange={changeemail} />
+            <span>Email</span>
+            <i></i>
+          </div>
+          <div className="inputbox">
+            <input
+              type="password"
+              required="required"
+              onChange={changepassword}
+            />
+            <span>Mot de passe</span>
+            <i></i>
+          </div>
+          <div class="links">
+            <button
+              type="button"
+              className="no_button_style"
+              onClick={gotocreate}
+            >
+              Créer un compte ?
+            </button>
+          </div>
+          <Buttonconnect email={email} password={password} className="bla" />
+        </div>
       </div>
-      <div className="textcenter">
-        <TextField
-          type="Password"
-          label="mot de passe"
-          id="verifypassword"
-          onChange={changepassword}
-          onKeyDown={tryingsome}
-        />
-      </div>
-      <Buttonconnect email={email} password={password} />
     </div>
   );
 };

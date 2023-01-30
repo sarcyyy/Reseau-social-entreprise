@@ -4,6 +4,7 @@
   margin-left: 2%;
   gap: 10px;
   padding-bottom: 20px;
+  align-items: center;
 }
 .picsize {
   border: 2px solid grey;
@@ -14,9 +15,10 @@
 }
 
 .tweetpicsize {
-  width: 250px;
+  border-radius: 25px;
+  width: 200px;
   object-fit: cover;
 }
 .nompersonne {
-  color: #fd2d01;
+  color: #45f3ff;
 }

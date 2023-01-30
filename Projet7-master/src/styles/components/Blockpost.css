@@ -1,12 +1,12 @@
-.blockpost {
+/* .blockpost {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
   margin-top: 5%;
   justify-content: center;
   gap: 15%;
-}
-.poststyle {
+} */
+/* .poststyle {
   display: flex;
   justify-content: center;
   margin-top: 50px;
@@ -14,7 +14,7 @@
   width: 1000px;
   height: 1%;
   border: 2px solid #4e5166;
-}
+}*/
 .description_field {
   max-width: 500px;
   padding-left: 25px;
@@ -22,14 +22,44 @@
   word-break: normal;
   overflow-wrap: break-word;
 }
+p {
+  color: #8f8f8f;
+}
+
+.blockpost {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  gap: 50px;
+}
+.poststyle {
+  display: flex;
+  justify-content: center;
+  width: 600px;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 15px;
+}
+.poststyle button {
+  margin: 10px;
+}
+.poststyle img {
+  padding: 10px;
+}
+.poststyle p {
+  padding: 10px;
+}
 .filterstyle {
   top: 55%;
   left: 10%;
-  padding: 15px;
-  width: 100px;
   gap: 10px;
   position: fixed;
-  border: 1px solid #4e5166;
+  border: 1px solid black;
+  padding: 25px;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,19 +79,18 @@
 .tweetblock {
   display: flex;
   justify-content: center;
-
   margin-top: 5%;
-
   padding: 30px;
   text-align: center;
 }
 
 .person_name {
-  font-size: 30px;
+  font-size: 40px;
   font-weight: bold;
   font-style: italic;
-  color: #fd2d01;
+  color: #2ea35e;
 }
+
 .chargement {
   position: fixed;
   left: 50%;
@@ -71,6 +100,7 @@
   .filterstyle {
     position: relative;
     left: 0;
+    margin-bottom: 50px;
   }
   .filterpage {
     display: flex;
@@ -87,11 +117,15 @@
 @media (max-width: 680px) {
   .poststyle {
     border-radius: 25px;
+    width: 85%;
   }
   .description_field {
     max-width: 200px;
   }
   .message {
     flex-direction: column;
+  }
+  .inputbox2 {
+    width: auto;
   }
 }

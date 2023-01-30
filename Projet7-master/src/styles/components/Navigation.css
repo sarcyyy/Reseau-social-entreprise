@@ -1,75 +1,64 @@
 ul {
-    list-style: none ; 
-    padding-left: 0;
+  list-style: none;
+  padding-left: 0;
+}
+li {
+  list-style: none;
+  padding-left: 0;
+}
+a {
+  text-decoration: none;
+}
+.navigation a {
+  color: black;
+  text-decoration: none;
+  border-radius: 8%;
+  padding: 10px;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(to right, #c9c9c9 100%, #c9c9c9 100%),
+    linear-gradient(to bottom, #c9c9c9 100%, #c9c9c9 100%),
+    linear-gradient(to right, #c9c9c9 100%, #c9c9c9 100%),
+    linear-gradient(to bottom, #c9c9c9 100%, #c9c9c9 100%);
+  background-size: 100% 3px, 3px 100%, 100% 3px, 3px 100%;
+  background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+  animation: rotation 1.25s cubic-bezier(0.19, 1, 0.22, 1) 1;
+  animation-play-state: paused;
+}
+
+.navigation a.active {
+  animation-play-state: running;
+  color: #45f3ff;
+}
+.navigation a.active li {
+  color: #45f3ff;
+}
+.navigation li {
+  color: #8f8f8f;
+}
+@keyframes rotation {
+  0% {
+    background-size: 0 3px, 3px 0, 0 3px, 3px 0;
   }
-  li {
-    list-style: none ; 
-    padding-left: 0;
+  25% {
+    background-size: 100% 3px, 3px 0, 0 3px, 3px 0;
   }
- 
-a{
-    color:black;
-    text-decoration: none;
-    border-radius: 8%;  
-    padding:10px; 
-     background-repeat: no-repeat;
-    background-image:   linear-gradient(to right, #C9C9C9 100%, #C9C9C9 100%),
-                        linear-gradient(to bottom, #C9C9C9 100%, #C9C9C9 100%),
-                        linear-gradient(to right, #C9C9C9 100%, #C9C9C9 100%),
-                        linear-gradient(to bottom, #C9C9C9 100%, #C9C9C9 100%);
-    background-size:    100% 3px,
-                        3px 100%,
-                        100% 3px,
-                        3px 100%;
-    background-position:    0 0,
-                            100% 0,
-                            100% 100%,
-                            0 100%;
-    animation: bg 1.25s cubic-bezier(0.19, 1, 0.22, 1) 1;
-    animation-play-state: paused;
+  50% {
+    background-size: 100% 3px, 3px 100%, 0 3px, 3px 0;
+  }
+  75% {
+    background-size: 100% 3px, 3px 100%, 100% 3px, 3px 0;
+  }
+  100% {
+    background-size: 100% 3px, 3px 100%, 100% 3px, 3px 100%;
+  }
 }
 
-a.active{  
-    animation-play-state: running;
-     
-    
-}
-@keyframes bg {
-    0% {
-        background-size:    0 3px,
-                            3px 0,
-                            0 3px,
-                            3px 0;
-    }
-    25% {
-        background-size:    100% 3px,
-                            3px 0,
-                            0 3px,
-                            3px 0;
-    }
-    50% {
-        background-size:    100% 3px,
-                            3px 100%,
-                            0 3px,
-                            3px 0;
-    }
-    75% {
-        background-size:    100% 3px,
-                            3px 100%,
-                            100% 3px,
-                            3px 0;
-    }
-    100% {
-        background-size:    100% 3px,
-                            3px 100%,
-                            100% 3px,
-                            3px 100%;
-    }
+.navigation {
+  display: flex;
+  justify-content: center;
+  gap: 5%;
 }
 
-
-.navigation{
-    display:flex;
-   justify-content: center;
-    gap:5%;
+.retour_position {
+  margin-left: 3vh;
 }

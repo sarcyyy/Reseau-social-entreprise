@@ -16,40 +16,36 @@ const Signupoption = () => {
     setCreatename(e.target.value);
   };
   return (
-    <div>
-      <form method="get">
-        <div className="LoginAndsignup paddingT10">
-          <div className="textcenter">
-            <TextField
-              type="email"
-              label="email"
-              id="createemail"
-              onChange={changeemail}
-            />
+    <div className="big">
+      <div className="login_and_signup">
+        <div className="form">
+          <h2> Créez votre compte !</h2>
+          <div className="inputbox">
+            <input type="text" required="required" onChange={changeemail} />
+            <span>Email</span>
+            <i></i>
           </div>
-          <div className="textcenter">
-            <TextField
-              type="Password"
-              label="Mot de passe"
-              id="createpassword"
+          <div className="inputbox">
+            <input
+              type="password"
+              required="required"
               onChange={changepassword}
             />
+            <span>Mot de passe</span>
+            <i></i>
           </div>
-          <div className="textcenter">
-            <TextField
-              type="text"
-              label="nom et prénom"
-              id="createname"
-              onChange={changename}
-            />
+          <div className="inputbox">
+            <input type="text" required="required" onChange={changename} />
+            <span>Nom et Prénom</span>
+            <i></i>
           </div>
+          <Buttoncreate
+            createemail={createemail}
+            createpassword={createpassword}
+            createname={createname}
+          />
         </div>
-      </form>
-      <Buttoncreate
-        createemail={createemail}
-        createpassword={createpassword}
-        createname={createname}
-      />
+      </div>
     </div>
   );
 };

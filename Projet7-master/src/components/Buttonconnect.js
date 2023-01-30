@@ -41,7 +41,7 @@ const Buttonconnect = ({ email, password }) => {
   };
 
   return (
-    <div className="LoginAndsignup paddingT10">
+    <div className="inputbox">
       <Button variant="outlined" onClick={fetchconnect}>
         {Islogtrue ? <Navigate to="/accueil" /> : ""}
         Connection

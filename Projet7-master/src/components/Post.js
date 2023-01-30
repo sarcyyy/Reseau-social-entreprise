@@ -49,7 +49,7 @@ const Post = ({ tweet, forceUpdate, admin }) => {
         <img src={tweet.imageUrl} alt="" className="tweetpicsize" />
         {likeornot ? (
           <div>
-            <FavoriteIcon onClick={functionDislike} />
+            <FavoriteIcon onClick={functionDislike} className="blue_color" />
             <p>{tweet.likes}</p>
           </div>
         ) : (
@@ -59,17 +59,25 @@ const Post = ({ tweet, forceUpdate, admin }) => {
           </div>
         )}
         {isthecreator ? (
-          <Button variant="contained" onClick={functionDelete}>
-            supprimer
-          </Button>
+          <button
+            type="button"
+            className="button_style"
+            onClick={functionDelete}
+          >
+            Supprimer
+          </button>
         ) : (
           ""
         )}
         {isthecreator ? (
           <NavLink to="/accueil/modifier">
-            <Button variant="contained" onClick={storageidmodify}>
-              modifier
-            </Button>
+            <button
+              type="button"
+              className="button_style"
+              onClick={storageidmodify}
+            >
+              Modifier
+            </button>
           </NavLink>
         ) : (
           ""

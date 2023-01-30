@@ -33,12 +33,7 @@ const Filter = ({ handleclick, rangevalue, tweet, maplike, setMaplike }) => {
           max={15}
         />
         {maplike ? (
-          <Button
-            variant="contained"
-            size="small"
-            onClick={mapdislikeedit}
-            className="trying"
-          >
+          <Button variant="contained" size="small" onClick={mapdislikeedit}>
             Accueil
           </Button>
         ) : (

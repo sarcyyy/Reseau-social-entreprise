@@ -2,8 +2,6 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import { TextField } from "@mui/material";
-import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 const Modifycomponent = () => {
   const [tweet, setTweet] = useState("");
@@ -69,36 +67,34 @@ const Modifycomponent = () => {
   return (
     <div className="tweetblock">
       <div className="message">
-        <TextField
-          multiline
-          maxRows={5}
-          className="widthfield"
-          type="text"
-          label="Ecrivez votre tweet"
-          id="textcontent"
-          onChange={onChangedescri}
-          value={descriptionvalue}
-        />
-        <Button variant="contained" className="inputheight" component="label">
-          Importer la nouvelle image
+        <div className="inputbox2">
           <input
-            hidden
-            accept="image/*"
-            multiple
-            type="file"
-            id="filecontent"
-            onChange={onChangeimage}
+            type="text"
+            required="required"
+            onChange={onChangedescri}
+            value={descriptionvalue}
           />
-        </Button>
-
-        <Button
-          variant="contained"
-          id="creertweet"
-          className="inputheight"
+          <span>Modifiez votre message ! </span>
+          <i></i>
+        </div>
+        <label for="file" className="label-file" value="Envoyer le post!">
+          Importer une nouvelle image ?
+        </label>
+        <input
+          id="file"
+          hidden
+          class="input-file"
+          type="file"
+          onChange={onChangeimage}
+        />
+        <input
+          id="tweet"
+          value="Envoyer le post!"
+          className="label-file text-size"
+          type="submit"
           onClick={functionModify}
-        >
-          Modifier
-        </Button>
+        />
+
         {ismodifydone
           ? (localStorage.removeItem("id"), (<Navigate to="/accueil" />))
           : ""}
